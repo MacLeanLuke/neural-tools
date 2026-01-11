@@ -1,0 +1,48 @@
+{
+  "name": "@neural-tools/vector-db",
+  "version": "0.1.0",
+  "description": "Vector database abstraction layer for Neural Tools",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "SEE LICENSE IN ../../LICENSE.md",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MacLeanLuke/ai-toolkit.git",
+    "directory": "packages/vector-db"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "test": "echo 'Tests coming soon'"
+  },
+  "dependencies": {
+    "@neural-tools/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "@pinecone-database/pinecone": "^2.0.0",
+    "chromadb": "^1.7.0",
+    "@qdrant/js-client-rest": "^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@pinecone-database/pinecone": {
+      "optional": true
+    },
+    "chromadb": {
+      "optional": true
+    },
+    "@qdrant/js-client-rest": {
+      "optional": true
+    }
+  },
+  "files": [
+    "dist"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@neural-tools/semantic-cache",
+  "version": "0.1.0",
+  "description": "Semantic caching for LLM responses",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "SEE LICENSE IN ../../LICENSE.md",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MacLeanLuke/ai-toolkit.git",
+    "directory": "packages/semantic-cache"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "test": "echo 'Tests coming soon'"
+  },
+  "dependencies": {
+    "@neural-tools/core": "workspace:*",
+    "@neural-tools/vector-db": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "typescript": "^5.3.3"
+  },
+  "files": [
+    "dist"
+  ]
+}
