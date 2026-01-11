@@ -1,0 +1,21 @@
+{
+  "name": "mcp-github",
+  "version": "0.1.0",
+  "description": "GitHub API integration - issues, PRs, projects",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "test": "echo \"Tests coming soon\""
+  },
+  "dependencies": {
+    "fastmcp": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "typescript": "^5.3.3",
+    "tsx": "^4.7.0"
+  }
+}
