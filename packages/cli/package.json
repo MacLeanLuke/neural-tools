@@ -1,0 +1,43 @@
+{
+  "name": "@ai-toolkit/cli",
+  "version": "0.1.0",
+  "description": "CLI for AI Toolkit - Generate MCPs, Claude commands, and AI workflows",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "ai-toolkit": "./dist/cli.js"
+  },
+  "license": "SEE LICENSE IN ../../LICENSE.md",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ai-toolkit.git",
+    "directory": "packages/cli"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x dist/cli.js",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "test": "echo 'Tests coming soon'"
+  },
+  "dependencies": {
+    "@ai-toolkit/core": "workspace:*",
+    "commander": "^12.0.0",
+    "inquirer": "^9.2.12",
+    "execa": "^8.0.1",
+    "fs-extra": "^11.2.0",
+    "globby": "^14.0.0",
+    "picocolors": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.11.5",
+    "typescript": "^5.3.3"
+  },
+  "files": [
+    "dist"
+  ]
+}

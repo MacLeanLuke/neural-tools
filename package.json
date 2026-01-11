@@ -1,0 +1,35 @@
+{
+  "name": "ai-toolkit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Complete AI productivity toolkit for building MCPs, Claude commands, and AI-powered workflows",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ai-toolkit.git"
+  },
+  "author": "Luke Amy",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm -r --parallel dev",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "clean": "pnpm -r clean",
+    "publish:packages": "pnpm -r publish --access public",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@types/node": "^20.11.5",
+    "typescript": "^5.3.3",
+    "prettier": "^3.2.4",
+    "eslint": "^8.56.0"
+  },
+  "packageManager": "pnpm@8.15.1"
+}
