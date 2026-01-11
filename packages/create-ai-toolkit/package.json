@@ -1,11 +1,11 @@
 {
-  "name": "create-ai-toolkit",
+  "name": "create-neural-tools",
   "version": "0.1.0",
-  "description": "Scaffold a new AI Toolkit workspace",
+  "description": "Scaffold a new Neural Tools workspace",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "create-ai-toolkit": "./dist/index.js"
+    "create-neural-tools": "./dist/index.js"
   },
   "license": "SEE LICENSE IN ../../LICENSE.md",
   "publishConfig": {
@@ -23,7 +23,7 @@
     "test": "echo 'Tests coming soon'"
   },
   "dependencies": {
-    "@ai-toolkit/core": "workspace:*",
+    "@neural-tools/core": "workspace:*",
     "commander": "^12.0.0",
     "inquirer": "^9.2.12",
     "execa": "^8.0.1",

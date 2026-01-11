@@ -16,8 +16,8 @@ interface ScaffoldOptions {
 }
 
 program
-  .name('create-ai-toolkit')
-  .description('Create a new AI Toolkit workspace')
+  .name('create-neural-tools')
+  .description('Create a new Neural Tools workspace')
   .argument('[project-name]', 'Name of your project')
   .option('-t, --template <template>', 'Template to use (full, minimal)', 'full')
   .option('-p, --package-manager <pm>', 'Package manager (npm, pnpm, yarn)', 'pnpm')
@@ -27,7 +27,7 @@ program
   });
 
 async function createProject(projectName: string | undefined, options: ScaffoldOptions): Promise<void> {
-  console.log(pc.cyan(pc.bold('\n✨ AI Toolkit Project Generator\n')));
+  console.log(pc.cyan(pc.bold('\n✨ Neural Tools Project Generator\n')));
 
   // Prompt for project name if not provided
   let name = projectName;
@@ -161,17 +161,17 @@ async function createWorkspaceStructure(
     name: projectName,
     version: '0.1.0',
     private: true,
-    description: 'AI Toolkit workspace',
+    description: 'Neural Tools workspace',
     scripts: {
       build: 'pnpm -r build',
       dev: 'pnpm -r --parallel dev',
       test: 'pnpm -r test',
-      'generate:mcp': 'ai-toolkit generate mcp',
-      'generate:command': 'ai-toolkit generate command',
-      'generate:agent': 'ai-toolkit generate agent'
+      'generate:mcp': 'neural-tools generate mcp',
+      'generate:command': 'neural-tools generate command',
+      'generate:agent': 'neural-tools generate agent'
     },
     devDependencies: {
-      '@ai-toolkit/cli': '^0.1.0',
+      '@neural-tools/cli': '^0.1.0',
       typescript: '^5.3.3'
     },
     packageManager: 'pnpm@8.15.1'

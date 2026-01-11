@@ -1,4 +1,4 @@
-import { logger, licenseManager, LicenseTier } from '@ai-toolkit/core';
+import { logger, licenseManager, LicenseTier } from '@neural-tools/core';
 import inquirer from 'inquirer';
 
 interface LoginOptions {

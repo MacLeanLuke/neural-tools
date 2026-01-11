@@ -1,10 +1,10 @@
-# AI Toolkit
+# Neural Tools
 
 **The complete toolkit for building AI-powered productivity tools**
 
 Build MCP servers, Claude commands, vector databases, and AI workflows with one command.
 
-[![npm version](https://badge.fury.io/js/%40ai-toolkit%2Fcli.svg)](https://www.npmjs.com/package/@ai-toolkit/cli)
+[![npm version](https://badge.fury.io/js/%40neural-tools%2Fcli.svg)](https://www.npmjs.com/package/@neural-tools/cli)
 [![License](https://img.shields.io/badge/license-Custom-blue.svg)](LICENSE.md)
 
 ## Features
@@ -21,18 +21,18 @@ Build MCP servers, Claude commands, vector databases, and AI workflows with one 
 
 ```bash
 # Create a new project
-npx create-ai-toolkit@latest my-ai-workspace
+npx create-neural-tools@latest my-neural-workspace
 
-cd my-ai-workspace
+cd my-neural-workspace
 
 # Generate an MCP server
-npx ai-toolkit generate mcp github
+npx neural-tools generate mcp github
 
 # Generate a Claude command
-npx ai-toolkit generate command search-kb
+npx neural-tools generate command search-kb
 
 # Deploy to AWS (Pro)
-npx ai-toolkit deploy github --platform aws
+npx neural-tools deploy github --platform aws
 ```
 
 ## Installation
@@ -40,13 +40,13 @@ npx ai-toolkit deploy github --platform aws
 ### Global Installation
 
 ```bash
-npm install -g @ai-toolkit/cli
+npm install -g @neural-tools/cli
 ```
 
 ### Project-specific
 
 ```bash
-npm install --save-dev @ai-toolkit/cli
+npm install --save-dev @neural-tools/cli
 ```
 
 ## Usage
@@ -54,7 +54,7 @@ npm install --save-dev @ai-toolkit/cli
 ### Generate an MCP Server
 
 ```bash
-ai-toolkit generate mcp <name> [options]
+neural-tools generate mcp <name> [options]
 
 Options:
   -d, --description <desc>      Description of the MCP
@@ -67,7 +67,7 @@ Options:
 **Example:**
 
 ```bash
-ai-toolkit generate mcp github \
+neural-tools generate mcp github \
   --description "GitHub API integration" \
   --cicd github \
   --deployment aws
@@ -76,7 +76,7 @@ ai-toolkit generate mcp github \
 ### Generate a Claude Command
 
 ```bash
-ai-toolkit generate command <name> [options]
+neural-tools generate command <name> [options]
 
 Options:
   -d, --description <desc>    Description of the command
@@ -90,7 +90,7 @@ Options:
 **Example:**
 
 ```bash
-ai-toolkit generate command search-kb \
+neural-tools generate command search-kb \
   --description "Search knowledge base" \
   --args query \
   --tools "Read" "Bash" \
@@ -100,7 +100,7 @@ ai-toolkit generate command search-kb \
 ### Generate a Claude Agent
 
 ```bash
-ai-toolkit generate agent <name> [options]
+neural-tools generate agent <name> [options]
 
 Options:
   -d, --description <desc>    Description of the agent
@@ -114,7 +114,7 @@ Options:
 **Example:**
 
 ```bash
-ai-toolkit generate agent code-reviewer \
+neural-tools generate agent code-reviewer \
   --description "Specialized code review agent" \
   --model opus \
   --tools "Read" "Grep" "Bash" \
@@ -124,7 +124,7 @@ ai-toolkit generate agent code-reviewer \
 ### Deploy an MCP
 
 ```bash
-ai-toolkit deploy <name> [options]
+neural-tools deploy <name> [options]
 
 Options:
   -p, --platform <platform>    Deployment platform (aws, gcp)
@@ -135,7 +135,7 @@ Options:
 **Example:**
 
 ```bash
-ai-toolkit deploy github \
+neural-tools deploy github \
   --platform aws \
   --region us-east-1 \
   --env prod
@@ -145,10 +145,10 @@ ai-toolkit deploy github \
 
 ```bash
 # Activate license
-ai-toolkit login --key <your-license-key>
+neural-tools login --key <your-license-key>
 
 # Check status
-ai-toolkit status
+neural-tools status
 ```
 
 ## Packages
@@ -157,9 +157,9 @@ This repository is a monorepo containing the following packages:
 
 | Package | Description | Version |
 |---------|-------------|---------|
-| [@ai-toolkit/cli](packages/cli) | Main CLI tool | ![npm](https://img.shields.io/npm/v/@ai-toolkit/cli) |
-| [@ai-toolkit/core](packages/core) | Core utilities and types | ![npm](https://img.shields.io/npm/v/@ai-toolkit/core) |
-| [create-ai-toolkit](packages/create-ai-toolkit) | Project scaffolding tool | ![npm](https://img.shields.io/npm/v/create-ai-toolkit) |
+| [@neural-tools/cli](packages/cli) | Main CLI tool | ![npm](https://img.shields.io/npm/v/@neural-tools/cli) |
+| [@neural-tools/core](packages/core) | Core utilities and types | ![npm](https://img.shields.io/npm/v/@neural-tools/core) |
+| [create-neural-tools](packages/create-neural-tools) | Project scaffolding tool | ![npm](https://img.shields.io/npm/v/create-neural-tools) |
 
 ## Example MCPs
 
@@ -202,7 +202,7 @@ Pre-built commands for common workflows:
 - ✅ SLA guarantee
 - ✅ Team collaboration features
 
-[View Pricing Details →](https://ai-toolkit.dev/pricing)
+[View Pricing Details →](https://neural-tools.dev/pricing)
 
 ## Documentation
 
@@ -226,9 +226,9 @@ This is a private repository. Contributions are limited to team members.
 
 ## Support
 
-- 📧 Email: support@ai-toolkit.dev
-- 💬 Discord: [Join our community](https://discord.gg/ai-toolkit)
-- 📚 Docs: [ai-toolkit.dev/docs](https://ai-toolkit.dev/docs)
+- 📧 Email: support@neural-tools.dev
+- 💬 Discord: [Join our community](https://discord.gg/neural-tools)
+- 📚 Docs: [neural-tools.dev/docs](https://neural-tools.dev/docs)
 
 ## License
 
@@ -238,4 +238,4 @@ See [LICENSE.md](LICENSE.md) for details.
 
 **Built with ❤️ by Luke Amy**
 
-[Website](https://ai-toolkit.dev) · [Twitter](https://twitter.com/yourusername) · [GitHub](https://github.com/yourusername)
+[Website](https://neural-tools.dev) · [Twitter](https://twitter.com/yourusername) · [GitHub](https://github.com/yourusername)

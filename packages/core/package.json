@@ -1,7 +1,7 @@
 {
-  "name": "@ai-toolkit/core",
+  "name": "@neural-tools/core",
   "version": "0.1.0",
-  "description": "Core utilities and types for AI Toolkit",
+  "description": "Core utilities and types for Neural Tools",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "SEE LICENSE IN ../../LICENSE.md",

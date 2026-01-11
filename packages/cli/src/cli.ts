@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { logger } from '@ai-toolkit/core';
+import { logger } from '@neural-tools/core';
 import { generateMCP } from './commands/generate-mcp';
 import { generateCommand } from './commands/generate-command';
 import { generateAgent } from './commands/generate-agent';
@@ -12,8 +12,8 @@ import { statusCommand } from './commands/status';
 const program = new Command();
 
 program
-  .name('ai-toolkit')
-  .description('AI Toolkit - Build MCPs, Claude commands, and AI workflows')
+  .name('neural-tools')
+  .description('Neural Tools - Build MCPs, Claude commands, and AI workflows')
   .version('0.1.0');
 
 // Generate commands

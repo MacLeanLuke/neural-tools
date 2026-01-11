@@ -1,11 +1,11 @@
 {
-  "name": "@ai-toolkit/cli",
+  "name": "@neural-tools/cli",
   "version": "0.1.0",
-  "description": "CLI for AI Toolkit - Generate MCPs, Claude commands, and AI workflows",
+  "description": "CLI for Neural Tools - Generate MCPs, Claude commands, and AI workflows",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "ai-toolkit": "./dist/cli.js"
+    "neural-tools": "./dist/cli.js"
   },
   "license": "SEE LICENSE IN ../../LICENSE.md",
   "publishConfig": {
@@ -23,7 +23,7 @@
     "test": "echo 'Tests coming soon'"
   },
   "dependencies": {
-    "@ai-toolkit/core": "workspace:*",
+    "@neural-tools/core": "workspace:*",
     "commander": "^12.0.0",
     "inquirer": "^9.2.12",
     "execa": "^8.0.1",

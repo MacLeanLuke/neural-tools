@@ -1,4 +1,4 @@
-import { logger, requireFeature } from '@ai-toolkit/core';
+import { logger, requireFeature } from '@neural-tools/core';
 import { execa } from 'execa';
 import path from 'path';
 import fs from 'fs-extra';

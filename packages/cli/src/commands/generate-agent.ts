@@ -1,7 +1,7 @@
 import path from 'path';
 import os from 'os';
 import fs from 'fs-extra';
-import { logger } from '@ai-toolkit/core';
+import { logger } from '@neural-tools/core';
 import inquirer from 'inquirer';
 
 interface GenerateAgentOptions {

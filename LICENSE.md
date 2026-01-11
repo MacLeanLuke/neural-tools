@@ -1,4 +1,4 @@
-# AI Toolkit License
+# Neural Tools License
 
 Copyright (c) 2025 Luke Amy. All rights reserved.
 
@@ -39,7 +39,7 @@ The following features require a valid Pro or Enterprise license:
 - SLA guarantees
 - Team collaboration features
 
-These features are proprietary and may not be used without a valid license key purchased from ai-toolkit.dev.
+These features are proprietary and may not be used without a valid license key purchased from neural-tools.dev.
 
 ### License Terms
 
@@ -49,7 +49,7 @@ These features are proprietary and may not be used without a valid license key p
    - Per-user for individual licenses
    - Per-organization for team/enterprise licenses
    - Non-transferable without written consent
-   - Subject to the terms at ai-toolkit.dev/terms
+   - Subject to the terms at neural-tools.dev/terms
 
 3. **Source Code**: This repository is private. You may not:
    - Redistribute the source code
@@ -71,9 +71,9 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 ### Contact
 
 For licensing inquiries:
-- Email: licensing@ai-toolkit.dev
-- Website: https://ai-toolkit.dev/pricing
-- Support: support@ai-toolkit.dev
+- Email: licensing@neural-tools.dev
+- Website: https://neural-tools.dev/pricing
+- Support: support@neural-tools.dev
 
 ---
 

@@ -26,7 +26,7 @@ importers:
 
   packages/cli:
     dependencies:
-      '@ai-toolkit/core':
+      '@neural-tools/core':
         specifier: workspace:*
         version: link:../core
       commander:
@@ -82,7 +82,7 @@ importers:
 
   packages/create-ai-toolkit:
     dependencies:
-      '@ai-toolkit/core':
+      '@neural-tools/core':
         specifier: workspace:*
         version: link:../core
       commander:

@@ -1,4 +1,4 @@
-import { logger, licenseManager, LicenseTier } from '@ai-toolkit/core';
+import { logger, licenseManager, LicenseTier } from '@neural-tools/core';
 
 export async function statusCommand(): Promise<void> {
   logger.header('AI Toolkit Status');
