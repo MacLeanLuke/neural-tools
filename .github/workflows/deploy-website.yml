@@ -1,0 +1,102 @@
+name: Deploy Website to S3 and CloudFront
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'website/**'
+  workflow_dispatch:
+    inputs:
+      invalidate_cache:
+        description: 'Invalidate CloudFront cache'
+        required: false
+        default: 'true'
+        type: boolean
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  deploy:
+    name: Deploy to AWS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Verify AWS credentials
+        run: |
+          echo "Testing AWS credentials..."
+          aws sts get-caller-identity
+
+      - name: Sync website to S3
+        run: |
+          echo "📦 Deploying website to S3..."
+          aws s3 sync website/ s3://${{ secrets.AWS_S3_BUCKET }} \
+            --exclude "*.md" \
+            --exclude "*.sh" \
+            --exclude ".git/*" \
+            --exclude ".DS_Store" \
+            --cache-control "public, max-age=3600" \
+            --delete
+          echo "✅ Website deployed to S3"
+
+      - name: Invalidate CloudFront cache
+        if: ${{ secrets.AWS_CLOUDFRONT_ID != '' && github.event.inputs.invalidate_cache != 'false' }}
+        run: |
+          echo "🔄 Invalidating CloudFront cache..."
+          INVALIDATION_ID=$(aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} \
+            --paths "/*" \
+            --query 'Invalidation.Id' \
+            --output text)
+          echo "Invalidation ID: $INVALIDATION_ID"
+          echo "✅ CloudFront cache invalidation initiated"
+
+      - name: Get CloudFront domain
+        if: ${{ secrets.AWS_CLOUDFRONT_ID != '' }}
+        id: cloudfront
+        run: |
+          DOMAIN=$(aws cloudfront get-distribution \
+            --id ${{ secrets.AWS_CLOUDFRONT_ID }} \
+            --query 'Distribution.DomainName' \
+            --output text)
+          echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
+          echo "CloudFront Domain: $DOMAIN"
+
+      - name: Deployment summary
+        run: |
+          echo "## 🚀 Deployment Successful!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**S3 Bucket:** \`${{ secrets.AWS_S3_BUCKET }}\`" >> $GITHUB_STEP_SUMMARY
+          if [ -n "${{ secrets.AWS_CLOUDFRONT_ID }}" ]; then
+            echo "**CloudFront Distribution:** \`${{ secrets.AWS_CLOUDFRONT_ID }}\`" >> $GITHUB_STEP_SUMMARY
+            echo "**CloudFront Domain:** https://${{ steps.cloudfront.outputs.domain }}" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### URLs:" >> $GITHUB_STEP_SUMMARY
+          echo "- **S3 Website:** http://${{ secrets.AWS_S3_BUCKET }}.s3-website-${{ env.AWS_REGION }}.amazonaws.com" >> $GITHUB_STEP_SUMMARY
+          if [ -n "${{ secrets.AWS_CLOUDFRONT_ID }}" ]; then
+            echo "- **CloudFront:** https://${{ steps.cloudfront.outputs.domain }}" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "_Deployment completed at $(date)_" >> $GITHUB_STEP_SUMMARY
+
+      - name: Notify deployment status
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ Deployment completed successfully!"
+          else
+            echo "❌ Deployment failed. Check logs above."
+            exit 1
+          fi
