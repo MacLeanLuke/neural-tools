@@ -21,7 +21,7 @@ Build MCP servers, Claude commands, vector databases, and AI workflows with one 
 
 ```bash
 # Create a new project
-npx create-neural-tools@latest my-neural-workspace
+npx @neural-tools/create@latest my-neural-workspace
 
 cd my-neural-workspace
 
@@ -159,7 +159,7 @@ This repository is a monorepo containing the following packages:
 |---------|-------------|---------|
 | [@neural-tools/cli](packages/cli) | Main CLI tool | ![npm](https://img.shields.io/npm/v/@neural-tools/cli) |
 | [@neural-tools/core](packages/core) | Core utilities and types | ![npm](https://img.shields.io/npm/v/@neural-tools/core) |
-| [create-neural-tools](packages/create-ai-toolkit) | Project scaffolding tool | ![npm](https://img.shields.io/npm/v/create-neural-tools) |
+| [@neural-tools/create](packages/create-ai-toolkit) | Project scaffolding tool | ![npm](https://img.shields.io/npm/v/@neural-tools/create) |
 | [@neural-tools/vector-db](packages/vector-db) | Vector database abstraction | ![npm](https://img.shields.io/npm/v/@neural-tools/vector-db) |
 | [@neural-tools/semantic-cache](packages/semantic-cache) | Semantic caching for LLMs | ![npm](https://img.shields.io/npm/v/@neural-tools/semantic-cache) |
 | [@neural-tools/fine-tune](packages/fine-tune) | Fine-tuning utilities | ![npm](https://img.shields.io/npm/v/@neural-tools/fine-tune) |

@@ -1,5 +1,5 @@
 {
-  "name": "create-neural-tools",
+  "name": "@neural-tools/create",
   "version": "0.1.0",
   "description": "Scaffold a new Neural Tools workspace",
   "main": "dist/index.js",

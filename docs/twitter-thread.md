@@ -46,7 +46,7 @@ Here's how fast it is:
 
 ```bash
 # Create a workspace
-npx create-neural-tools my-project
+npx @neural-tools/create my-project
 
 # Generate a GitHub MCP
 neural-tools generate mcp github

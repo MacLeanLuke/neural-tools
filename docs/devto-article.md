@@ -29,7 +29,7 @@ Neural Tools is a monorepo of TypeScript packages that handle the boring parts o
 - **@neural-tools/vector-db** - Vector database abstraction (Pinecone, Qdrant, local)
 - **@neural-tools/semantic-cache** - LLM response caching
 - **@neural-tools/fine-tune** - Fine-tuning workflows
-- **create-neural-tools** - Project scaffolding
+- **@neural-tools/create** - Project scaffolding
 
 Free tier for indie hackers. Pro tier ($49/mo) for teams.
 
@@ -38,7 +38,7 @@ Free tier for indie hackers. Pro tier ($49/mo) for teams.
 Here's how you create a production-ready MCP server:
 
 ```bash
-npx create-neural-tools my-workspace
+npx @neural-tools/create my-workspace
 cd my-workspace
 
 neural-tools generate mcp github \
@@ -289,7 +289,7 @@ The toolkit is live on npm:
 
 ```bash
 # Create a new project
-npx create-neural-tools@latest my-project
+npx @neural-tools/create@latest my-project
 
 # Or install the CLI
 npm install -g @neural-tools/cli
