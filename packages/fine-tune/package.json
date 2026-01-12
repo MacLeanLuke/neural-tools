@@ -1,6 +1,6 @@
 {
   "name": "@neural-tools/fine-tune",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Fine-tuning utilities for Neural Tools",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

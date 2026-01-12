@@ -1,6 +1,6 @@
 {
   "name": "@neural-tools/semantic-cache",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Semantic caching for LLM responses",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
