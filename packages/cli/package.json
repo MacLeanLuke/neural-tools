@@ -13,9 +13,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/ai-toolkit.git",
+    "url": "https://github.com/MacLeanLuke/neural-tools.git",
     "directory": "packages/cli"
   },
+  "homepage": "https://github.com/MacLeanLuke/neural-tools#readme",
+  "bugs": {
+    "url": "https://github.com/MacLeanLuke/neural-tools/issues"
+  },
+  "keywords": [
+    "cli",
+    "neural-tools",
+    "mcp",
+    "claude",
+    "ai-tools",
+    "code-generation",
+    "developer-tools"
+  ],
   "scripts": {
     "build": "tsc && chmod +x dist/cli.js",
     "dev": "tsc --watch",
