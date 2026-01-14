@@ -27,8 +27,8 @@
     "vector-search"
   ],
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "clean": "rm -rf dist",
     "test": "echo 'Tests coming soon'"
   },

@@ -30,8 +30,8 @@
     "generator"
   ],
   "scripts": {
-    "build": "tsc && chmod +x dist/index.js",
-    "dev": "tsc --watch",
+    "build": "tsup && chmod +x dist/index.js",
+    "dev": "tsup --watch",
     "clean": "rm -rf dist",
     "test": "echo 'Tests coming soon'"
   },
