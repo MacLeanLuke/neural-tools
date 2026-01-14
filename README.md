@@ -205,33 +205,16 @@ Pre-built commands for common workflows:
 - ✅ SLA guarantee
 - ✅ Team collaboration features
 
-[View Pricing Details →](https://neural-tools.dev/pricing)
-
-## Documentation
-
-- [Getting Started Guide](docs/getting-started.md)
-- [MCP Development](docs/mcp-development.md)
-- [Claude Commands](docs/claude-commands.md)
-- [Vector Database Setup](docs/vector-database.md)
-- [Deployment Guide](docs/deployment.md)
-- [API Reference](docs/api-reference.md)
-
-## Examples
-
-Check out the [examples](examples/) directory for complete projects:
-
-- [GitHub Automation](examples/github-automation) - Automate your GitHub workflow
-- [Knowledge Management](examples/knowledge-management) - Build a semantic knowledge base
+Visit [neural-tools.com](https://neural-tools.com) for more information.
 
 ## Contributing
 
-This is a private repository. Contributions are limited to team members.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Support
 
-- 📧 Email: support@neural-tools.dev
-- 💬 Discord: [Join our community](https://discord.gg/neural-tools)
-- 📚 Docs: [neural-tools.dev/docs](https://neural-tools.dev/docs)
+- 📚 Documentation: Check the package READMEs for detailed information
+- 🐛 Issues: Report bugs or request features via GitHub Issues
 
 ## License
 
@@ -239,6 +222,6 @@ See [LICENSE.md](LICENSE.md) for details.
 
 ---
 
-**Built with ❤️ by Luke Amy**
+**Built by Luke Amy**
 
-[Website](https://neural-tools.dev) · [Twitter](https://twitter.com/yourusername) · [GitHub](https://github.com/yourusername)
+[Website](https://neural-tools.com) · [GitHub](https://github.com/MacLeanLuke/neural-tools)

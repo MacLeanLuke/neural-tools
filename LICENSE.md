@@ -51,11 +51,10 @@ These features are proprietary and may not be used without a valid license key p
    - Non-transferable without written consent
    - Subject to the terms at neural-tools.dev/terms
 
-3. **Source Code**: This repository is private. You may not:
-   - Redistribute the source code
-   - Create derivative works for redistribution
+3. **Source Code**: The free tier components are open source under MIT. For Pro/Enterprise features, you may not:
    - Reverse engineer Pro/Enterprise features
    - Remove or circumvent license checks
+   - Use Pro/Enterprise features without a valid license
 
 4. **Support**: Support is provided based on your license tier:
    - Free: Community support only
