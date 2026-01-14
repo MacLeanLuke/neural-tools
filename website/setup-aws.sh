@@ -150,14 +150,7 @@ cat > /tmp/cloudfront-config.json <<EOF
       }
     },
     "Compress": true,
-    "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
-    "MinTTL": 0,
-    "ForwardedValues": {
-      "QueryString": false,
-      "Cookies": {
-        "Forward": "none"
-      }
-    }
+    "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6"
   },
   "CustomErrorResponses": {
     "Quantity": 1,
