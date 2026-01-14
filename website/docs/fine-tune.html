@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@neural-tools/fine-tune - Fine-tuning utilities for LLM models">
+    <title>@neural-tools/fine-tune - Neural Tools Documentation</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .doc-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .doc-header {
+            margin-bottom: 40px;
+        }
+        .doc-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .doc-header .version {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        .doc-nav {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        .doc-nav h3 {
+            margin-bottom: 15px;
+        }
+        .doc-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        .doc-nav li {
+            margin-bottom: 8px;
+        }
+        .doc-nav a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .doc-nav a:hover {
+            text-decoration: underline;
+        }
+        .doc-section {
+            margin-bottom: 40px;
+        }
+        .doc-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+        }
+        .doc-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+        .doc-section pre {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .doc-section code {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+        }
+        .doc-section ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                    <h1><a href="/" style="color: inherit; text-decoration: none;">Neural Tools</a></h1>
+                </div>
+                <nav>
+                    <a href="/#features">Features</a>
+                    <a href="/#packages">Packages</a>
+                    <a href="/docs/">Docs</a>
+                    <a href="https://github.com/MacLeanLuke/neural-tools" target="_blank" class="btn-secondary">GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="doc-content">
+        <div class="doc-header">
+            <h1>@neural-tools/fine-tune</h1>
+            <p class="version">v0.1.3 • <a href="https://www.npmjs.com/package/@neural-tools/fine-tune" target="_blank">View on npm</a></p>
+            <p>Streamlined fine-tuning workflows and utilities for LLM models.</p>
+        </div>
+
+        <div class="doc-nav">
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#usage">Usage</a></li>
+                <li><a href="#data-preparation">Data Preparation</a></li>
+                <li><a href="#training">Training</a></li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="installation">
+            <h2>Installation</h2>
+            <pre><code>npm install @neural-tools/fine-tune</code></pre>
+            <p>Requires OpenAI SDK for fine-tuning:</p>
+            <pre><code>npm install openai</code></pre>
+        </div>
+
+        <div class="doc-section" id="usage">
+            <h2>Usage</h2>
+
+            <h3>Quick Start</h3>
+            <pre><code>import { FineTuner } from '@neural-tools/fine-tune';
+
+const tuner = new FineTuner({
+  apiKey: process.env.OPENAI_API_KEY,
+  model: 'gpt-3.5-turbo'
+});
+
+// Prepare training data
+const data = [
+  {
+    messages: [
+      { role: 'system', content: 'You are a helpful assistant.' },
+      { role: 'user', content: 'What is 2+2?' },
+      { role: 'assistant', content: '2+2 equals 4.' }
+    ]
+  },
+  // ... more examples
+];
+
+// Start fine-tuning job
+const job = await tuner.train({
+  data,
+  suffix: 'my-model',
+  epochs: 3
+});
+
+console.log('Job ID:', job.id);</code></pre>
+        </div>
+
+        <div class="doc-section" id="data-preparation">
+            <h2>Data Preparation</h2>
+
+            <h3>Format Validation</h3>
+            <pre><code>import { validateTrainingData } from '@neural-tools/fine-tune';
+
+const errors = validateTrainingData(data);
+if (errors.length > 0) {
+  console.error('Validation errors:', errors);
+} else {
+  console.log('Data is valid!');
+}</code></pre>
+
+            <h3>Data Conversion</h3>
+            <p>Convert from common formats:</p>
+            <pre><code>import { convertFromCSV, convertFromJSON } from '@neural-tools/fine-tune';
+
+// From CSV
+const data = await convertFromCSV('training.csv', {
+  userColumn: 'question',
+  assistantColumn: 'answer',
+  systemPrompt: 'You are a helpful assistant.'
+});
+
+// From JSON
+const data = await convertFromJSON('training.json');</code></pre>
+        </div>
+
+        <div class="doc-section" id="training">
+            <h2>Training</h2>
+
+            <h3>Monitor Progress</h3>
+            <pre><code>// Check job status
+const status = await tuner.getJobStatus(job.id);
+console.log('Status:', status.status);
+console.log('Progress:', status.trained_tokens);
+
+// Wait for completion
+await tuner.waitForCompletion(job.id, {
+  onProgress: (status) => {
+    console.log('Training progress:', status.progress);
+  }
+});</code></pre>
+
+            <h3>Use Fine-Tuned Model</h3>
+            <pre><code>import OpenAI from 'openai';
+
+const openai = new OpenAI();
+
+const response = await openai.chat.completions.create({
+  model: 'ft:gpt-3.5-turbo:my-model',
+  messages: [
+    { role: 'user', content: 'Your query' }
+  ]
+});</code></pre>
+        </div>
+
+        <div class="doc-section">
+            <h2>Best Practices</h2>
+            <ul>
+                <li>Use at least 50-100 high-quality examples</li>
+                <li>Validate data format before uploading</li>
+                <li>Monitor training metrics closely</li>
+                <li>Test on a validation set</li>
+                <li>Start with a lower learning rate</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2>Related Packages</h2>
+            <ul>
+                <li><a href="/docs/core.html">@neural-tools/core</a> - Core utilities</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Neural Tools. <a href="/">Home</a> • <a href="/docs/">Docs</a> • <a href="https://github.com/MacLeanLuke/neural-tools">GitHub</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

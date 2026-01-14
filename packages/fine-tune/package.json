@@ -13,7 +13,7 @@
     "url": "https://github.com/MacLeanLuke/neural-tools.git",
     "directory": "packages/fine-tune"
   },
-  "homepage": "https://neural-tools.com",
+  "homepage": "https://neural-tools.com/docs/fine-tune.html",
   "bugs": {
     "url": "https://github.com/MacLeanLuke/neural-tools/issues"
   },

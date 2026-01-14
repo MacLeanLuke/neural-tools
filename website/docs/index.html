@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Neural Tools Documentation - Complete guides for all packages">
+    <title>Documentation - Neural Tools</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .doc-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .doc-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .doc-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .package-doc-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .package-doc-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary);
+        }
+        .package-doc-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .package-doc-card .version {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .package-doc-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .resource-section {
+            margin-top: 60px;
+        }
+        .resource-section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .resource-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.2s;
+        }
+        .resource-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+        .resource-card h3 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                    <h1><a href="/" style="color: inherit; text-decoration: none;">Neural Tools</a></h1>
+                </div>
+                <nav>
+                    <a href="/#features">Features</a>
+                    <a href="/#packages">Packages</a>
+                    <a href="/docs/">Docs</a>
+                    <a href="https://github.com/MacLeanLuke/neural-tools" target="_blank" class="btn-secondary">GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="doc-content">
+        <div class="doc-header">
+            <h1>Documentation</h1>
+            <p>Complete guides and API references for all Neural Tools packages.</p>
+        </div>
+
+        <div class="package-grid">
+            <a href="/docs/cli.html" class="package-doc-card">
+                <h3>@neural-tools/cli</h3>
+                <p class="version">v0.1.3</p>
+                <p>Main CLI tool for generating MCP servers, Claude commands, and AI agents. Learn about all available commands and options.</p>
+            </a>
+
+            <a href="/docs/create.html" class="package-doc-card">
+                <h3>@neural-tools/create</h3>
+                <p class="version">v0.1.3</p>
+                <p>Scaffold new Neural Tools workspaces with templates and best practices. Get started with a complete project structure in seconds.</p>
+            </a>
+
+            <a href="/docs/core.html" class="package-doc-card">
+                <h3>@neural-tools/core</h3>
+                <p class="version">v0.1.3</p>
+                <p>Core utilities, types, and shared functionality. Includes logging, configuration validation, and common helpers.</p>
+            </a>
+
+            <a href="/docs/vector-db.html" class="package-doc-card">
+                <h3>@neural-tools/vector-db</h3>
+                <p class="version">v0.1.3</p>
+                <p>Unified vector database abstraction supporting Pinecone, Qdrant, ChromaDB, and local storage. Build semantic search into your apps.</p>
+            </a>
+
+            <a href="/docs/semantic-cache.html" class="package-doc-card">
+                <h3>@neural-tools/semantic-cache</h3>
+                <p class="version">v0.1.3</p>
+                <p>Intelligent LLM response caching using semantic similarity. Reduce API costs by up to 90% and improve response times.</p>
+            </a>
+
+            <a href="/docs/fine-tune.html" class="package-doc-card">
+                <h3>@neural-tools/fine-tune</h3>
+                <p class="version">v0.1.3</p>
+                <p>Streamlined fine-tuning workflows for LLM models. Prepare data, train models, and monitor progress with ease.</p>
+            </a>
+        </div>
+
+        <div class="resource-section">
+            <h2>Additional Resources</h2>
+            <div class="resource-grid">
+                <a href="https://github.com/MacLeanLuke/neural-tools" target="_blank" class="resource-card">
+                    <h3>💻 GitHub Repository</h3>
+                    <p>View source code, report issues, and contribute</p>
+                </a>
+
+                <a href="https://www.npmjs.com/org/neural-tools" target="_blank" class="resource-card">
+                    <h3>📦 npm Organization</h3>
+                    <p>Browse all published packages on npm</p>
+                </a>
+
+                <a href="https://modelcontextprotocol.io" target="_blank" class="resource-card">
+                    <h3>🔗 MCP Protocol</h3>
+                    <p>Learn about the Model Context Protocol</p>
+                </a>
+
+                <a href="https://github.com/MacLeanLuke/neural-tools/issues" target="_blank" class="resource-card">
+                    <h3>🐛 Report Issues</h3>
+                    <p>Found a bug? Let us know on GitHub</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Neural Tools. <a href="/">Home</a> • <a href="/docs/">Docs</a> • <a href="https://github.com/MacLeanLuke/neural-tools">GitHub</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

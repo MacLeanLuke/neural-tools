@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@neural-tools/create - Scaffold new Neural Tools workspaces">
+    <title>@neural-tools/create - Neural Tools Documentation</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .doc-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .doc-header {
+            margin-bottom: 40px;
+        }
+        .doc-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .doc-header .version {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        .doc-nav {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        .doc-nav h3 {
+            margin-bottom: 15px;
+        }
+        .doc-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        .doc-nav li {
+            margin-bottom: 8px;
+        }
+        .doc-nav a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .doc-nav a:hover {
+            text-decoration: underline;
+        }
+        .doc-section {
+            margin-bottom: 40px;
+        }
+        .doc-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+        }
+        .doc-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+        .doc-section pre {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .doc-section code {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+        }
+        .doc-section ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                    <h1><a href="/" style="color: inherit; text-decoration: none;">Neural Tools</a></h1>
+                </div>
+                <nav>
+                    <a href="/#features">Features</a>
+                    <a href="/#packages">Packages</a>
+                    <a href="/docs/">Docs</a>
+                    <a href="https://github.com/MacLeanLuke/neural-tools" target="_blank" class="btn-secondary">GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="doc-content">
+        <div class="doc-header">
+            <h1>@neural-tools/create</h1>
+            <p class="version">v0.1.3 • <a href="https://www.npmjs.com/package/@neural-tools/create" target="_blank">View on npm</a></p>
+            <p>Scaffold a new Neural Tools workspace with best practices and templates.</p>
+        </div>
+
+        <div class="doc-nav">
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#usage">Usage</a></li>
+                <li><a href="#workspace-structure">Workspace Structure</a></li>
+                <li><a href="#templates">Templates</a></li>
+                <li><a href="#next-steps">Next Steps</a></li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="usage">
+            <h2>Usage</h2>
+            <p>Create a new workspace using npx (no installation required):</p>
+            <pre><code>npx @neural-tools/create@latest my-workspace</code></pre>
+            <p>Or install globally and use:</p>
+            <pre><code>npm install -g @neural-tools/create
+create-neural-tools my-workspace</code></pre>
+            <p>The CLI will guide you through:</p>
+            <ul>
+                <li>Choosing a template</li>
+                <li>Setting up your project structure</li>
+                <li>Installing dependencies</li>
+                <li>Initializing git repository</li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="workspace-structure">
+            <h2>Workspace Structure</h2>
+            <p>A typical Neural Tools workspace includes:</p>
+            <pre><code>my-workspace/
+├── .claude/              # Claude Code configuration
+│   ├── commands/         # Custom slash commands
+│   └── agents/           # AI agents
+├── mcp-servers/          # MCP servers
+│   └── example/
+│       ├── Dockerfile
+│       ├── docker-compose.yml
+│       └── server.py
+├── .github/
+│   └── workflows/        # CI/CD pipelines
+├── package.json
+└── README.md</code></pre>
+        </div>
+
+        <div class="doc-section" id="templates">
+            <h2>Templates</h2>
+
+            <h3>Default Template</h3>
+            <p>Includes:</p>
+            <ul>
+                <li>Basic workspace structure</li>
+                <li>Example MCP server with Docker</li>
+                <li>Claude Code commands and agents</li>
+                <li>GitHub Actions workflows</li>
+            </ul>
+
+            <h3>Minimal Template</h3>
+            <p>Bare-bones setup for custom configurations:</p>
+            <ul>
+                <li>Basic directory structure</li>
+                <li>Essential configuration files</li>
+                <li>No examples or boilerplate</li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="next-steps">
+            <h2>Next Steps</h2>
+            <p>After creating your workspace:</p>
+
+            <h3>1. Install the CLI</h3>
+            <pre><code>npm install -g @neural-tools/cli</code></pre>
+
+            <h3>2. Generate your first MCP server</h3>
+            <pre><code>cd my-workspace
+neural-tools generate mcp my-server \
+  --description "My first MCP server"</code></pre>
+
+            <h3>3. Run with Docker</h3>
+            <pre><code>cd mcp-servers/my-server
+docker-compose up</code></pre>
+        </div>
+
+        <div class="doc-section">
+            <h2>Related Packages</h2>
+            <ul>
+                <li><a href="/docs/cli.html">@neural-tools/cli</a> - Main CLI tool</li>
+                <li><a href="/docs/core.html">@neural-tools/core</a> - Core utilities</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Neural Tools. <a href="/">Home</a> • <a href="/docs/">Docs</a> • <a href="https://github.com/MacLeanLuke/neural-tools">GitHub</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

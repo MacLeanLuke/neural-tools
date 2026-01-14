@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@neural-tools/vector-db - Vector database abstraction for Pinecone, Qdrant, ChromaDB, and more">
+    <title>@neural-tools/vector-db - Neural Tools Documentation</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .doc-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .doc-header {
+            margin-bottom: 40px;
+        }
+        .doc-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .doc-header .version {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        .doc-nav {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        .doc-nav h3 {
+            margin-bottom: 15px;
+        }
+        .doc-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        .doc-nav li {
+            margin-bottom: 8px;
+        }
+        .doc-nav a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .doc-nav a:hover {
+            text-decoration: underline;
+        }
+        .doc-section {
+            margin-bottom: 40px;
+        }
+        .doc-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+        }
+        .doc-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+        .doc-section pre {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .doc-section code {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+        }
+        .doc-section ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                    <h1><a href="/" style="color: inherit; text-decoration: none;">Neural Tools</a></h1>
+                </div>
+                <nav>
+                    <a href="/#features">Features</a>
+                    <a href="/#packages">Packages</a>
+                    <a href="/docs/">Docs</a>
+                    <a href="https://github.com/MacLeanLuke/neural-tools" target="_blank" class="btn-secondary">GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="doc-content">
+        <div class="doc-header">
+            <h1>@neural-tools/vector-db</h1>
+            <p class="version">v0.1.3 • <a href="https://www.npmjs.com/package/@neural-tools/vector-db" target="_blank">View on npm</a></p>
+            <p>Unified vector database abstraction supporting Pinecone, Qdrant, ChromaDB, and local storage.</p>
+        </div>
+
+        <div class="doc-nav">
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#usage">Usage</a></li>
+                <li><a href="#providers">Supported Providers</a></li>
+                <li><a href="#api">API Reference</a></li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="installation">
+            <h2>Installation</h2>
+            <pre><code>npm install @neural-tools/vector-db</code></pre>
+            <p>Install provider-specific dependencies:</p>
+            <pre><code># For Pinecone
+npm install @pinecone-database/pinecone
+
+# For Qdrant
+npm install @qdrant/js-client-rest
+
+# For ChromaDB
+npm install chromadb</code></pre>
+        </div>
+
+        <div class="doc-section" id="usage">
+            <h2>Usage</h2>
+
+            <h3>Pinecone Example</h3>
+            <pre><code>import { VectorDB } from '@neural-tools/vector-db';
+
+const db = new VectorDB({
+  provider: 'pinecone',
+  apiKey: process.env.PINECONE_API_KEY,
+  index: 'my-index'
+});
+
+// Store embeddings
+await db.upsert([
+  {
+    id: '1',
+    values: [0.1, 0.2, 0.3, ...],
+    metadata: { text: 'Sample document' }
+  }
+]);
+
+// Query similar vectors
+const results = await db.query({
+  vector: [0.1, 0.2, 0.3, ...],
+  topK: 5
+});</code></pre>
+
+            <h3>Local Storage Example</h3>
+            <pre><code>const db = new VectorDB({
+  provider: 'local',
+  path: './vectors.json'
+});
+
+// Same API, works offline
+await db.upsert([...]);
+const results = await db.query({...});</code></pre>
+        </div>
+
+        <div class="doc-section" id="providers">
+            <h2>Supported Providers</h2>
+
+            <h3>Pinecone</h3>
+            <ul>
+                <li>Serverless vector database</li>
+                <li>High performance at scale</li>
+                <li>Automatic scaling</li>
+            </ul>
+
+            <h3>Qdrant</h3>
+            <ul>
+                <li>Open-source vector search engine</li>
+                <li>Self-hosted or cloud</li>
+                <li>Advanced filtering</li>
+            </ul>
+
+            <h3>ChromaDB</h3>
+            <ul>
+                <li>Developer-friendly API</li>
+                <li>Built for LLM applications</li>
+                <li>Easy local development</li>
+            </ul>
+
+            <h3>Local Storage</h3>
+            <ul>
+                <li>JSON-based persistence</li>
+                <li>No external dependencies</li>
+                <li>Perfect for development and testing</li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="api">
+            <h2>API Reference</h2>
+
+            <h3>VectorDB</h3>
+            <p>Main class for vector operations:</p>
+            <pre><code>const db = new VectorDB(config);</code></pre>
+
+            <h3>Methods</h3>
+            <ul>
+                <li><code>upsert(vectors)</code> - Insert or update vectors</li>
+                <li><code>query(params)</code> - Search for similar vectors</li>
+                <li><code>delete(ids)</code> - Remove vectors by ID</li>
+                <li><code>fetch(ids)</code> - Retrieve vectors by ID</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2>Related Packages</h2>
+            <ul>
+                <li><a href="/docs/semantic-cache.html">@neural-tools/semantic-cache</a> - Semantic caching</li>
+                <li><a href="/docs/core.html">@neural-tools/core</a> - Core utilities</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Neural Tools. <a href="/">Home</a> • <a href="/docs/">Docs</a> • <a href="https://github.com/MacLeanLuke/neural-tools">GitHub</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
