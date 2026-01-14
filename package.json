@@ -32,9 +32,8 @@
     "@changesets/cli": "^2.27.1",
     "@types/node": "^20.11.5",
     "eslint": "^8.56.0",
-    "glob": "^10.3.10",
     "prettier": "^3.2.4",
-    "terser": "^5.27.0",
+    "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
   "packageManager": "pnpm@8.15.1",

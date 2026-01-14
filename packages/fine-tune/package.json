@@ -26,8 +26,8 @@
     "ai"
   ],
   "scripts": {
-    "build": "tsc && node ../../scripts/minify.js dist",
-    "dev": "tsc --watch",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "clean": "rm -rf dist",
     "test": "echo 'Tests coming soon'"
   },

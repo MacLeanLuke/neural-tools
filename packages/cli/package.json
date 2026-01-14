@@ -30,8 +30,8 @@
     "developer-tools"
   ],
   "scripts": {
-    "build": "tsc && chmod +x dist/cli.js && node ../../scripts/minify.js dist",
-    "dev": "tsc --watch",
+    "build": "tsup && chmod +x dist/cli.js",
+    "dev": "tsup --watch",
     "clean": "rm -rf dist",
     "test": "echo 'Tests coming soon'"
   },
