@@ -94,7 +94,7 @@ OAC_ID=$(aws cloudfront list-origin-access-controls \
   --query "OriginAccessControlList.Items[?Name=='$OAC_NAME'].Id" \
   --output text 2>/dev/null || echo "")
 
-if [ -z "$OAC_ID" ]; then
+if [ -z "$OAC_ID" ] || [ "$OAC_ID" = "None" ]; then
     cat > /tmp/oac-config.json <<EOF
 {
   "Name": "$OAC_NAME",
