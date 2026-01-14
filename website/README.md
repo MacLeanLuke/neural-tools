@@ -97,13 +97,17 @@ cd website
 
 ```
 website/
-├── index.html              # Main landing page
-├── styles.css              # Styling
-├── script.js               # Interactive features
-├── README.md               # This file
-├── deploy.sh               # Manual deployment script
-├── setup-aws.sh            # Automated AWS setup
-└── invalidate-cache.sh     # CloudFront cache invalidation
+├── index.html                        # Main landing page
+├── styles.css                        # Styling
+├── script.js                         # Interactive features
+├── README.md                         # This file
+├── deploy.sh                         # Manual deployment script
+├── setup-aws.sh                      # Automated AWS setup
+├── invalidate-cache.sh               # CloudFront cache invalidation
+├── update-cloudfront-ssl.sh          # SSL certificate setup
+├── setup-www-redirect.sh             # WWW redirect setup
+├── cloudfront-function-redirect.js   # CloudFront redirect function
+└── WWW_REDIRECT_SETUP.md             # WWW redirect documentation
 ```
 
 ## Configuration
@@ -227,6 +231,35 @@ First 12 months includes AWS Free Tier benefits.
 2. **Check IAM permissions**: Ensure user has S3 and CloudFront access
 3. **View logs**: `gh run view` to see error details
 
+## WWW Redirect Setup
+
+To redirect `https://neural-tools.com` to `https://www.neural-tools.com`:
+
+### Using GitHub Actions (Recommended)
+
+Run the GitHub Actions workflow:
+
+```bash
+# Trigger the workflow from GitHub UI or using gh CLI
+gh workflow run setup-www-redirect.yml
+```
+
+### Using the Setup Script
+
+```bash
+cd website
+./setup-www-redirect.sh
+```
+
+### What it does
+
+- Creates a CloudFront Function that redirects apex domain to www
+- Preserves URL paths and query strings
+- Returns HTTP 301 (Moved Permanently)
+- Costs: FREE (within CloudFront Functions free tier)
+
+**See**: [WWW_REDIRECT_SETUP.md](WWW_REDIRECT_SETUP.md) for detailed instructions
+
 ## Security
 
 - ✅ HTTPS enforced via CloudFront
@@ -234,12 +267,14 @@ First 12 months includes AWS Free Tier benefits.
 - ✅ Origin Access Control (OAC) configured
 - ✅ Minimal IAM permissions for deployment
 - ✅ No sensitive data in repository
+- ✅ Apex domain redirects to www subdomain
 
 ## Documentation
 
 - 📚 [AWS Setup Guide](../AWS_SETUP_GUIDE.md) - Complete AWS S3 + CloudFront setup
 - 🚀 [GitHub Actions Setup](../GITHUB_ACTIONS_SETUP.md) - CI/CD configuration
 - 📦 [GitHub Project Setup](../GITHUB_PROJECT_SETUP.md) - Project management
+- 🔄 [WWW Redirect Setup](WWW_REDIRECT_SETUP.md) - Setup apex to www redirect
 
 ## Resources
 
