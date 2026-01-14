@@ -27,7 +27,7 @@
     "vector-search"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node ../../scripts/minify.js dist",
     "dev": "tsc --watch",
     "clean": "rm -rf dist",
     "test": "echo 'Tests coming soon'"

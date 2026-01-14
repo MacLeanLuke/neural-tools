@@ -30,7 +30,7 @@
     "generator"
   ],
   "scripts": {
-    "build": "tsc && chmod +x dist/index.js",
+    "build": "tsc && chmod +x dist/index.js && node ../../scripts/minify.js dist",
     "dev": "tsc --watch",
     "clean": "rm -rf dist",
     "test": "echo 'Tests coming soon'"
