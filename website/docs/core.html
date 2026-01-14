@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@neural-tools/core - Core utilities and types for Neural Tools">
+    <title>@neural-tools/core - Neural Tools Documentation</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .doc-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .doc-header {
+            margin-bottom: 40px;
+        }
+        .doc-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .doc-header .version {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        .doc-nav {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        .doc-nav h3 {
+            margin-bottom: 15px;
+        }
+        .doc-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        .doc-nav li {
+            margin-bottom: 8px;
+        }
+        .doc-nav a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .doc-nav a:hover {
+            text-decoration: underline;
+        }
+        .doc-section {
+            margin-bottom: 40px;
+        }
+        .doc-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+        }
+        .doc-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+        .doc-section pre {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .doc-section code {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+        }
+        .doc-section ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                    <h1><a href="/" style="color: inherit; text-decoration: none;">Neural Tools</a></h1>
+                </div>
+                <nav>
+                    <a href="/#features">Features</a>
+                    <a href="/#packages">Packages</a>
+                    <a href="/docs/">Docs</a>
+                    <a href="https://github.com/MacLeanLuke/neural-tools" target="_blank" class="btn-secondary">GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="doc-content">
+        <div class="doc-header">
+            <h1>@neural-tools/core</h1>
+            <p class="version">v0.1.3 • <a href="https://www.npmjs.com/package/@neural-tools/core" target="_blank">View on npm</a></p>
+            <p>Core utilities, types, and shared functionality for Neural Tools packages.</p>
+        </div>
+
+        <div class="doc-nav">
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#usage">Usage</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#api">API Reference</a></li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="installation">
+            <h2>Installation</h2>
+            <pre><code>npm install @neural-tools/core</code></pre>
+        </div>
+
+        <div class="doc-section" id="usage">
+            <h2>Usage</h2>
+            <pre><code>import { logger, validateConfig } from '@neural-tools/core';
+
+// Structured logging
+logger.info('Starting MCP server');
+logger.error('Connection failed', { error });
+
+// Configuration validation
+const config = validateConfig({
+  port: 8000,
+  host: 'localhost'
+});</code></pre>
+        </div>
+
+        <div class="doc-section" id="features">
+            <h2>Features</h2>
+
+            <h3>Logger</h3>
+            <p>Structured logging with multiple levels and formatting:</p>
+            <pre><code>logger.debug('Debug message');
+logger.info('Info message');
+logger.warn('Warning message');
+logger.error('Error message', { context });</code></pre>
+
+            <h3>Type Definitions</h3>
+            <p>TypeScript types for Neural Tools ecosystem:</p>
+            <ul>
+                <li>MCP server configurations</li>
+                <li>Claude command schemas</li>
+                <li>Agent definitions</li>
+                <li>Workflow types</li>
+            </ul>
+
+            <h3>Utilities</h3>
+            <p>Common helper functions:</p>
+            <ul>
+                <li>Configuration validation</li>
+                <li>File system operations</li>
+                <li>Template rendering</li>
+                <li>Error handling</li>
+            </ul>
+        </div>
+
+        <div class="doc-section" id="api">
+            <h2>API Reference</h2>
+
+            <h3>logger</h3>
+            <p>Structured logging instance with methods:</p>
+            <ul>
+                <li><code>logger.debug(message, context?)</code></li>
+                <li><code>logger.info(message, context?)</code></li>
+                <li><code>logger.warn(message, context?)</code></li>
+                <li><code>logger.error(message, context?)</code></li>
+            </ul>
+
+            <h3>validateConfig</h3>
+            <p>Validate configuration objects using Zod schemas:</p>
+            <pre><code>const config = validateConfig(userConfig, schema);</code></pre>
+        </div>
+
+        <div class="doc-section">
+            <h2>Related Packages</h2>
+            <ul>
+                <li><a href="/docs/cli.html">@neural-tools/cli</a> - Main CLI tool</li>
+                <li><a href="/docs/create.html">@neural-tools/create</a> - Workspace scaffolding</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Neural Tools. <a href="/">Home</a> • <a href="/docs/">Docs</a> • <a href="https://github.com/MacLeanLuke/neural-tools">GitHub</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
