@@ -10,9 +10,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MacLeanLuke/ai-toolkit.git",
+    "url": "https://github.com/MacLeanLuke/neural-tools.git",
     "directory": "packages/vector-db"
   },
+  "homepage": "https://github.com/MacLeanLuke/neural-tools#readme",
+  "bugs": {
+    "url": "https://github.com/MacLeanLuke/neural-tools/issues"
+  },
+  "keywords": [
+    "vector-database",
+    "pinecone",
+    "chroma",
+    "qdrant",
+    "embeddings",
+    "neural-tools",
+    "ai"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",

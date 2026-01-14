@@ -5,7 +5,11 @@
   "description": "Complete AI productivity toolkit for building MCPs, Claude commands, and AI-powered workflows",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/ai-toolkit.git"
+    "url": "https://github.com/MacLeanLuke/neural-tools.git"
+  },
+  "homepage": "https://github.com/MacLeanLuke/neural-tools#readme",
+  "bugs": {
+    "url": "https://github.com/MacLeanLuke/neural-tools/issues"
   },
   "author": "Luke Amy",
   "license": "SEE LICENSE IN LICENSE.md",

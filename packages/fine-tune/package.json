@@ -10,9 +10,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MacLeanLuke/ai-toolkit.git",
+    "url": "https://github.com/MacLeanLuke/neural-tools.git",
     "directory": "packages/fine-tune"
   },
+  "homepage": "https://github.com/MacLeanLuke/neural-tools#readme",
+  "bugs": {
+    "url": "https://github.com/MacLeanLuke/neural-tools/issues"
+  },
+  "keywords": [
+    "fine-tuning",
+    "openai",
+    "llm",
+    "neural-tools",
+    "machine-learning",
+    "ai"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",

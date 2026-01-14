@@ -10,9 +10,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/ai-toolkit.git",
+    "url": "https://github.com/MacLeanLuke/neural-tools.git",
     "directory": "packages/core"
   },
+  "homepage": "https://github.com/MacLeanLuke/neural-tools#readme",
+  "bugs": {
+    "url": "https://github.com/MacLeanLuke/neural-tools/issues"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "neural-tools",
+    "utilities",
+    "typescript",
+    "anthropic",
+    "claude"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
