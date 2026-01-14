@@ -51,42 +51,58 @@ jobs:
           echo "✅ Website deployed to S3"
 
       - name: Invalidate CloudFront cache
-        if: ${{ secrets.AWS_CLOUDFRONT_ID != '' && github.event.inputs.invalidate_cache != 'false' }}
+        env:
+          CLOUDFRONT_ID: ${{ secrets.AWS_CLOUDFRONT_ID }}
+          INVALIDATE_CACHE: ${{ github.event.inputs.invalidate_cache }}
         run: |
-          echo "🔄 Invalidating CloudFront cache..."
-          INVALIDATION_ID=$(aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} \
-            --paths "/*" \
-            --query 'Invalidation.Id' \
-            --output text)
-          echo "Invalidation ID: $INVALIDATION_ID"
-          echo "✅ CloudFront cache invalidation initiated"
+          if [ -n "$CLOUDFRONT_ID" ] && [ "$INVALIDATE_CACHE" != "false" ]; then
+            echo "🔄 Invalidating CloudFront cache..."
+            INVALIDATION_ID=$(aws cloudfront create-invalidation \
+              --distribution-id $CLOUDFRONT_ID \
+              --paths "/*" \
+              --query 'Invalidation.Id' \
+              --output text)
+            echo "Invalidation ID: $INVALIDATION_ID"
+            echo "✅ CloudFront cache invalidation initiated"
+          else
+            echo "⏭️  Skipping CloudFront cache invalidation"
+          fi
 
       - name: Get CloudFront domain
-        if: ${{ secrets.AWS_CLOUDFRONT_ID != '' }}
         id: cloudfront
+        env:
+          CLOUDFRONT_ID: ${{ secrets.AWS_CLOUDFRONT_ID }}
         run: |
-          DOMAIN=$(aws cloudfront get-distribution \
-            --id ${{ secrets.AWS_CLOUDFRONT_ID }} \
-            --query 'Distribution.DomainName' \
-            --output text)
-          echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
-          echo "CloudFront Domain: $DOMAIN"
+          if [ -n "$CLOUDFRONT_ID" ]; then
+            DOMAIN=$(aws cloudfront get-distribution \
+              --id $CLOUDFRONT_ID \
+              --query 'Distribution.DomainName' \
+              --output text)
+            echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
+            echo "CloudFront Domain: $DOMAIN"
+          else
+            echo "domain=" >> $GITHUB_OUTPUT
+            echo "⏭️  No CloudFront distribution configured"
+          fi
 
       - name: Deployment summary
+        env:
+          S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          CLOUDFRONT_ID: ${{ secrets.AWS_CLOUDFRONT_ID }}
+          CLOUDFRONT_DOMAIN: ${{ steps.cloudfront.outputs.domain }}
         run: |
           echo "## 🚀 Deployment Successful!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**S3 Bucket:** \`${{ secrets.AWS_S3_BUCKET }}\`" >> $GITHUB_STEP_SUMMARY
-          if [ -n "${{ secrets.AWS_CLOUDFRONT_ID }}" ]; then
-            echo "**CloudFront Distribution:** \`${{ secrets.AWS_CLOUDFRONT_ID }}\`" >> $GITHUB_STEP_SUMMARY
-            echo "**CloudFront Domain:** https://${{ steps.cloudfront.outputs.domain }}" >> $GITHUB_STEP_SUMMARY
+          echo "**S3 Bucket:** \`$S3_BUCKET\`" >> $GITHUB_STEP_SUMMARY
+          if [ -n "$CLOUDFRONT_ID" ]; then
+            echo "**CloudFront Distribution:** \`$CLOUDFRONT_ID\`" >> $GITHUB_STEP_SUMMARY
+            echo "**CloudFront Domain:** https://$CLOUDFRONT_DOMAIN" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### URLs:" >> $GITHUB_STEP_SUMMARY
-          echo "- **S3 Website:** http://${{ secrets.AWS_S3_BUCKET }}.s3-website-${{ env.AWS_REGION }}.amazonaws.com" >> $GITHUB_STEP_SUMMARY
-          if [ -n "${{ secrets.AWS_CLOUDFRONT_ID }}" ]; then
-            echo "- **CloudFront:** https://${{ steps.cloudfront.outputs.domain }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **S3 Website:** http://$S3_BUCKET.s3-website-${{ env.AWS_REGION }}.amazonaws.com" >> $GITHUB_STEP_SUMMARY
+          if [ -n "$CLOUDFRONT_ID" ]; then
+            echo "- **CloudFront:** https://$CLOUDFRONT_DOMAIN" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "_Deployment completed at $(date)_" >> $GITHUB_STEP_SUMMARY
