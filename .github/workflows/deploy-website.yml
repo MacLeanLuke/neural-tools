@@ -21,6 +21,8 @@ jobs:
   deploy:
     name: Deploy to AWS
     runs-on: ubuntu-latest
+    env:
+      CLOUDFRONT_ID: ${{ secrets.AWS_CLOUDFRONT_ID }}
 
     steps:
       - name: Checkout code
@@ -51,11 +53,11 @@ jobs:
           echo "✅ Website deployed to S3"
 
       - name: Invalidate CloudFront cache
-        if: ${{ secrets.AWS_CLOUDFRONT_ID != '' && github.event.inputs.invalidate_cache != 'false' }}
+        if: ${{ env.CLOUDFRONT_ID != '' && github.event.inputs.invalidate_cache != 'false' }}
         run: |
           echo "🔄 Invalidating CloudFront cache..."
           INVALIDATION_ID=$(aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} \
+            --distribution-id ${{ env.CLOUDFRONT_ID }} \
             --paths "/*" \
             --query 'Invalidation.Id' \
             --output text)
@@ -63,11 +65,11 @@ jobs:
           echo "✅ CloudFront cache invalidation initiated"
 
       - name: Get CloudFront domain
-        if: ${{ secrets.AWS_CLOUDFRONT_ID != '' }}
+        if: ${{ env.CLOUDFRONT_ID != '' }}
         id: cloudfront
         run: |
           DOMAIN=$(aws cloudfront get-distribution \
-            --id ${{ secrets.AWS_CLOUDFRONT_ID }} \
+            --id ${{ env.CLOUDFRONT_ID }} \
             --query 'Distribution.DomainName' \
             --output text)
           echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
@@ -78,14 +80,14 @@ jobs:
           echo "## 🚀 Deployment Successful!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**S3 Bucket:** \`${{ secrets.AWS_S3_BUCKET }}\`" >> $GITHUB_STEP_SUMMARY
-          if [ -n "${{ secrets.AWS_CLOUDFRONT_ID }}" ]; then
-            echo "**CloudFront Distribution:** \`${{ secrets.AWS_CLOUDFRONT_ID }}\`" >> $GITHUB_STEP_SUMMARY
+          if [ -n "${{ env.CLOUDFRONT_ID }}" ]; then
+            echo "**CloudFront Distribution:** \`${{ env.CLOUDFRONT_ID }}\`" >> $GITHUB_STEP_SUMMARY
             echo "**CloudFront Domain:** https://${{ steps.cloudfront.outputs.domain }}" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### URLs:" >> $GITHUB_STEP_SUMMARY
           echo "- **S3 Website:** http://${{ secrets.AWS_S3_BUCKET }}.s3-website-${{ env.AWS_REGION }}.amazonaws.com" >> $GITHUB_STEP_SUMMARY
-          if [ -n "${{ secrets.AWS_CLOUDFRONT_ID }}" ]; then
+          if [ -n "${{ env.CLOUDFRONT_ID }}" ]; then
             echo "- **CloudFront:** https://${{ steps.cloudfront.outputs.domain }}" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
