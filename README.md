@@ -174,7 +174,7 @@ The toolkit includes example MCPs to get you started:
 
 ## Example Claude Commands
 
-Pre-built commands for common workflows:
+Example commands for common workflows. See [claude/commands](claude/commands) for details:
 
 - `/search-kb` - Search your vector database
 - `/save-context` - Save conversation to knowledge base
@@ -213,8 +213,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Support
 
-- 📚 Documentation: Check the package READMEs for detailed information
-- 🐛 Issues: Report bugs or request features via GitHub Issues
+- 📚 Documentation: See usage examples above
+- 🐛 Issues: Report bugs or request features via [GitHub Issues](https://github.com/MacLeanLuke/neural-tools/issues)
 
 ## License
 
