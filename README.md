@@ -5,17 +5,17 @@
 Build MCP servers, Claude commands, vector databases, and AI workflows with one command.
 
 [![npm version](https://badge.fury.io/js/%40neural-tools%2Fcli.svg)](https://www.npmjs.com/package/@neural-tools/cli)
-[![License](https://img.shields.io/badge/license-Custom-blue.svg)](LICENSE.md)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
 
 ## Features
 
 - 🚀 **MCP Generation** - Create FastMCP servers in seconds
 - 🎯 **Claude Commands** - Custom slash commands for Claude Code
 - 🤖 **Claude Agents** - Specialized AI agents for your workflows
-- 🧠 **Vector Database** - Semantic search and caching (Pro)
-- ☁️ **Cloud Deployment** - AWS/GCP deployment templates (Pro)
-- 🔄 **GitHub Automation** - Automate your development workflow (Pro)
-- 🎨 **Fine-tuning** - Train specialized models (Pro)
+- 🧠 **Vector Database** - Semantic search and caching
+- ☁️ **Cloud Deployment** - AWS/GCP deployment templates
+- 🔄 **GitHub Automation** - Automate your development workflow
+- 🎨 **Fine-tuning** - Train specialized models
 
 ## Quick Start
 
@@ -31,7 +31,7 @@ npx neural-tools generate mcp github
 # Generate a Claude command
 npx neural-tools generate command search-kb
 
-# Deploy to AWS (Pro)
+# Deploy to AWS
 npx neural-tools deploy github --platform aws
 ```
 
@@ -141,16 +141,6 @@ neural-tools deploy github \
   --env prod
 ```
 
-### License Management
-
-```bash
-# Activate license
-neural-tools login --key <your-license-key>
-
-# Check status
-neural-tools status
-```
-
 ## Packages
 
 This repository is a monorepo containing the following packages:
@@ -179,33 +169,6 @@ Example commands for common workflows. See [claude/commands](claude/commands) fo
 - `/search-kb` - Search your vector database
 - `/save-context` - Save conversation to knowledge base
 - `/github-issue` - Create GitHub issue from context
-
-## Pricing
-
-### Free Tier
-- ✅ MCP generation
-- ✅ Claude commands
-- ✅ Basic templates
-- ✅ Local development
-
-### Pro ($49/month)
-- ✅ Everything in Free
-- ✅ Vector database integration
-- ✅ Semantic caching
-- ✅ Fine-tuning workflows
-- ✅ Cloud deployment (AWS/GCP)
-- ✅ Premium templates
-- ✅ GitHub automation
-
-### Enterprise (Custom)
-- ✅ Everything in Pro
-- ✅ White-label support
-- ✅ Custom integrations
-- ✅ Priority support
-- ✅ SLA guarantee
-- ✅ Team collaboration features
-
-Visit [neural-tools.com](https://neural-tools.com) for more information.
 
 ## Contributing
 

@@ -32,12 +32,6 @@ export async function statusCommand(): Promise<void> {
 
     logger.section('Feature Availability', featureStatus);
 
-    if (license.tier === LicenseTier.FREE) {
-      logger.newline();
-      logger.info('Unlock more features with Pro or Enterprise:');
-      logger.info('https://ai-toolkit.dev/pricing');
-    }
-
     logger.newline();
     logger.section('Quick Start', [
       'Generate an MCP server:',
@@ -52,8 +46,8 @@ export async function statusCommand(): Promise<void> {
   } catch (error: any) {
     logger.error('Failed to load license information');
     logger.newline();
-    logger.info('Run "ai-toolkit login" to activate your license');
-    logger.info('Or continue with free tier features');
+    logger.info('All features are available - no license required!');
+    logger.info('Run "ai-toolkit --help" to get started');
   }
 }
 
