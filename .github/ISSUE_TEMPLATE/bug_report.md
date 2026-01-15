@@ -26,7 +26,7 @@ What actually happened.
 
 ## Environment
 
-- **Neural Tools Version**: [e.g., 0.1.5]
+- **Neural Tools Version**: [e.g., 0.1.6]
 - **Node Version**: [e.g., 20.11.0]
 - **Package Manager**: [e.g., pnpm 8.15.1]
 - **OS**: [e.g., macOS 14.2, Ubuntu 22.04]
