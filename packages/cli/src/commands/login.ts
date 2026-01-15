@@ -69,62 +69,30 @@ export async function loginCommand(options: LoginOptions): Promise<void> {
       `Status: Active`
     ]);
 
-    // Show available features based on tier
-    const features = getFeaturesByTier(tier);
+    // Show all available features (everything is free)
+    const features = getAllFeatures();
 
     logger.section('Available Features', features);
-
-    if (tier === LicenseTier.FREE) {
-      logger.newline();
-      logger.info('Upgrade to Pro for advanced features:');
-      logger.info('https://ai-toolkit.dev/pricing');
-    }
 
     logger.success('✨ Ready to build!');
   } catch (error: any) {
     logger.failSpinner('License validation failed');
     logger.error(error.message || 'Invalid license key');
     logger.newline();
-    logger.info('Get a license at: https://ai-toolkit.dev/pricing');
-    logger.info('Or continue with free tier features');
+    logger.info('All features are available for free - no license required!');
   }
 }
 
-function getFeaturesByTier(tier: LicenseTier): string[] {
-  const freeTier = [
+function getAllFeatures(): string[] {
+  return [
     '✓ MCP generation',
     '✓ Claude commands',
-    '✓ Basic templates',
-    '✓ Local development'
-  ];
-
-  const proTier = [
-    ...freeTier,
+    '✓ Claude agents',
     '✓ Vector database integration',
     '✓ Semantic caching',
     '✓ Fine-tuning workflows',
     '✓ Cloud deployment (AWS/GCP)',
-    '✓ Premium templates',
-    '✓ GitHub automation'
+    '✓ GitHub automation',
+    '✓ All templates'
   ];
-
-  const enterpriseTier = [
-    ...proTier,
-    '✓ White-label support',
-    '✓ Custom integrations',
-    '✓ Priority support',
-    '✓ SLA guarantee',
-    '✓ Team collaboration features'
-  ];
-
-  switch (tier) {
-    case LicenseTier.FREE:
-      return freeTier;
-    case LicenseTier.PRO:
-      return proTier;
-    case LicenseTier.ENTERPRISE:
-      return enterpriseTier;
-    default:
-      return freeTier;
-  }
 }

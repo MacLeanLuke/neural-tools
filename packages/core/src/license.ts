@@ -58,46 +58,8 @@ export class LicenseManager {
   }
 
   async checkFeature(feature: string): Promise<boolean> {
-    const license = await this.loadLicense();
-
-    // Free tier features
-    const freeTierFeatures = [
-      'mcp-generation',
-      'claude-commands',
-      'basic-templates',
-      'local-development'
-    ];
-
-    // Pro tier features
-    const proTierFeatures = [
-      ...freeTierFeatures,
-      'vector-db',
-      'semantic-cache',
-      'fine-tuning',
-      'cloud-deployment',
-      'premium-templates',
-      'github-automation'
-    ];
-
-    // Enterprise tier features
-    const enterpriseTierFeatures = [
-      ...proTierFeatures,
-      'white-label',
-      'custom-integrations',
-      'priority-support',
-      'sla-guarantee'
-    ];
-
-    switch (license.tier) {
-      case LicenseTier.FREE:
-        return freeTierFeatures.includes(feature) || license.features.includes(feature);
-      case LicenseTier.PRO:
-        return proTierFeatures.includes(feature) || license.features.includes(feature);
-      case LicenseTier.ENTERPRISE:
-        return enterpriseTierFeatures.includes(feature) || license.features.includes(feature);
-      default:
-        return freeTierFeatures.includes(feature);
-    }
+    // All features are now available for free
+    return true;
   }
 
   async requireFeature(feature: string, featureName?: string): Promise<void> {
