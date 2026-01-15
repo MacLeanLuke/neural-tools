@@ -5,6 +5,12 @@
     box-sizing: border-box;
 }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
 :root {
     --primary: #6366f1;
     --primary-dark: #4f46e5;
@@ -48,6 +54,8 @@ pre, code, .code-example {
     z-index: 100;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.9);
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .nav {
@@ -55,6 +63,7 @@ pre, code, .code-example {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    width: 100%;
 }
 
 .logo h1 {
@@ -554,12 +563,42 @@ section {
     .packages-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
+
+    .nav-menu {
+        gap: 1.5rem;
+    }
+
+    .nav-menu a {
+        font-size: 0.95rem;
+    }
+}
+
+/* Small tablets - reduce nav spacing further */
+@media (max-width: 900px) {
+    .nav-menu {
+        gap: 1rem;
+    }
+
+    .nav-menu a {
+        font-size: 0.9rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
 }
 
 /* Tablets and larger phones */
 @media (max-width: 768px) {
     .container {
         padding: 0 1rem;
+    }
+
+    /* Logo */
+    .logo h1 {
+        font-size: 1.25rem;
     }
 
     /* Mobile Navigation */
@@ -581,6 +620,8 @@ section {
         transition: transform 0.3s ease;
         max-height: calc(100vh - 73px);
         overflow-y: auto;
+        z-index: 99;
+        width: 100%;
     }
 
     .nav-menu.active {
