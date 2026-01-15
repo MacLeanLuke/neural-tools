@@ -23,6 +23,14 @@ body {
     line-height: 1.6;
     color: var(--dark);
     background: var(--white);
+    -webkit-tap-highlight-color: rgba(99, 102, 241, 0.1);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improve touch scrolling on iOS */
+pre, code, .code-example {
+    -webkit-overflow-scrolling: touch;
 }
 
 .container {
@@ -57,21 +65,53 @@ body {
     background-clip: text;
 }
 
-nav {
+.nav-menu {
     display: flex;
     gap: 2rem;
     align-items: center;
 }
 
-nav a {
+.nav-menu a {
     text-decoration: none;
     color: var(--gray);
     font-weight: 500;
     transition: color 0.3s;
 }
 
-nav a:hover {
+.nav-menu a:hover {
     color: var(--primary);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 101;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--dark);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Buttons */
@@ -84,6 +124,8 @@ nav a:hover {
     font-weight: 600;
     display: inline-block;
     transition: transform 0.2s, box-shadow 0.2s;
+    touch-action: manipulation;
+    user-select: none;
 }
 
 .btn-primary:hover {
@@ -101,6 +143,8 @@ nav a:hover {
     display: inline-block;
     border: 2px solid var(--primary);
     transition: all 0.2s;
+    touch-action: manipulation;
+    user-select: none;
 }
 
 .btn-secondary:hover {
@@ -177,6 +221,7 @@ nav a:hover {
     font-family: 'Monaco', 'Courier New', monospace;
     font-size: 0.95rem;
     line-height: 1.8;
+    -webkit-overflow-scrolling: touch;
 }
 
 .comment {
@@ -495,7 +540,69 @@ section {
 }
 
 /* Responsive */
+
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .packages-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+/* Tablets and larger phones */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Mobile Navigation */
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 73px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+        box-shadow: var(--shadow);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        max-height: calc(100vh - 73px);
+        overflow-y: auto;
+    }
+
+    .nav-menu.active {
+        transform: translateX(0);
+    }
+
+    .nav-menu a {
+        padding: 1rem 2rem;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid var(--light-gray);
+    }
+
+    .nav-menu a:hover {
+        background: var(--light-gray);
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 4rem 0;
+    }
+
     .hero-title {
         font-size: 2.5rem;
     }
@@ -506,17 +613,186 @@ section {
 
     .hero-cta {
         flex-direction: column;
+        gap: 0.75rem;
     }
 
-    nav {
-        gap: 1rem;
+    .btn-large {
+        padding: 0.875rem 1.75rem;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .code-example {
+        padding: 1.5rem;
+    }
+
+    .code-example code {
+        font-size: 0.85rem;
+    }
+
+    /* Sections */
+    section {
+        padding: 3rem 0;
     }
 
     .section-title {
         font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Features */
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+
+    /* Packages */
+    .packages-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .package-card {
+        padding: 1.5rem;
+    }
+
+    /* Steps */
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .step pre {
+        padding: 1rem;
+    }
+
+    /* Documentation */
+    .docs-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .doc-card {
+        padding: 1.5rem;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
     }
 
     .pricing-card.featured {
         transform: scale(1);
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 3rem 0;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .code-example {
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+
+    .code-example code {
+        font-size: 0.75rem;
+        line-height: 1.6;
+    }
+
+    /* Sections */
+    section {
+        padding: 2.5rem 0;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Cards */
+    .feature-card,
+    .package-card,
+    .doc-card {
+        padding: 1.25rem;
+    }
+
+    .feature-card h3,
+    .package-card h3 {
+        font-size: 1.25rem;
+    }
+
+    /* Buttons */
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-large {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+
+    /* Step numbers */
+    .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        margin: 0 auto 1rem;
+    }
+
+    .step h3 {
+        font-size: 1.25rem;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .logo h1 {
+        font-size: 1.25rem;
     }
 }
