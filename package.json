@@ -1,7 +1,7 @@
 {
-  "name": "ai-toolkit",
+  "name": "neural-tools",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "description": "Complete AI productivity toolkit for building MCPs, Claude commands, and AI-powered workflows",
   "repository": {
     "type": "git",
@@ -12,7 +12,19 @@
     "url": "https://github.com/MacLeanLuke/neural-tools/issues"
   },
   "author": "Luke Amy",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "ai-tools",
+    "llm",
+    "vector-database",
+    "semantic-cache",
+    "fine-tuning",
+    "code-generation",
+    "developer-tools"
+  ],
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=8.0.0"
