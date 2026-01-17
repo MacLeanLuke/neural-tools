@@ -1,0 +1,17 @@
+{
+  "template": "Jira Standard Template",
+  "fields": {
+    "summary": "[FEATURE] Implement user authentication system with OAuth2 support",
+    "description": "We need to implement a comprehensive user authentication system that supports OAuth2. This should include:\n\n1. OAuth2 integration with Google and GitHub\n2. JWT token generation and validation\n3. Refresh token mechanism\n4. User session management\n5. Rate limiting for login attempts\n\nAcceptance Criteria:\n- Users can log in with Google or GitHub accounts\n- JWT tokens are securely generated and validated\n- Session expiry is handled gracefully\n- Login attempts are rate-limited to prevent brute force attacks",
+    "project": {
+      "key": "BACKEND"
+    },
+    "issuetype": {
+      "name": "Task"
+    },
+    "priority": {
+      "name": "High"
+    },
+    "labels": ["authentication", "oauth2", "security", "backend"]
+  }
+}

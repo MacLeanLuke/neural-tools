@@ -1,0 +1,113 @@
+{
+  "templates": [
+    {
+      "name": "GitHub Issues Template",
+      "description": "Validation template for GitHub Issues",
+      "system": "github",
+      "fields": [
+        {
+          "path": "owner",
+          "label": "Repository Owner",
+          "rules": [
+            {
+              "type": "required",
+              "severity": "error",
+              "message": "Repository owner is required"
+            },
+            {
+              "type": "pattern",
+              "pattern": "^[a-zA-Z0-9-]+$",
+              "severity": "error",
+              "message": "Repository owner must be a valid GitHub username or organization"
+            }
+          ]
+        },
+        {
+          "path": "repo",
+          "label": "Repository Name",
+          "rules": [
+            {
+              "type": "required",
+              "severity": "error",
+              "message": "Repository name is required"
+            },
+            {
+              "type": "pattern",
+              "pattern": "^[a-zA-Z0-9-_.]+$",
+              "severity": "error",
+              "message": "Repository name must be a valid GitHub repository name"
+            }
+          ]
+        },
+        {
+          "path": "title",
+          "label": "Title",
+          "rules": [
+            {
+              "type": "required",
+              "severity": "error",
+              "message": "Title is required"
+            },
+            {
+              "type": "min_length",
+              "min": 15,
+              "severity": "warning",
+              "message": "Title should be at least 15 characters for clarity"
+            },
+            {
+              "type": "max_length",
+              "max": 256,
+              "severity": "error",
+              "message": "Title must not exceed 256 characters"
+            }
+          ]
+        },
+        {
+          "path": "body",
+          "label": "Description",
+          "rules": [
+            {
+              "type": "required",
+              "severity": "error",
+              "message": "Description is required"
+            },
+            {
+              "type": "min_length",
+              "min": 50,
+              "severity": "warning",
+              "message": "Description should be at least 50 characters for proper context"
+            }
+          ]
+        },
+        {
+          "path": "labels",
+          "label": "Labels",
+          "rules": [
+            {
+              "type": "min_length",
+              "min": 1,
+              "severity": "warning",
+              "message": "Consider adding labels for better issue categorization"
+            }
+          ]
+        },
+        {
+          "path": "assignees",
+          "label": "Assignees",
+          "rules": [
+            {
+              "type": "min_length",
+              "min": 1,
+              "severity": "info",
+              "message": "Consider assigning the issue to a team member"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "defaultTemplate": "GitHub Issues Template",
+  "enableCodeActions": true,
+  "enableCompletion": true,
+  "enableHover": true
+}

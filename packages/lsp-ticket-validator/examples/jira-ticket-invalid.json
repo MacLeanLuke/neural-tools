@@ -1,0 +1,16 @@
+{
+  "template": "Jira Standard Template",
+  "fields": {
+    "summary": "Add auth",
+    "description": "Need OAuth2",
+    "project": {
+      "key": "UNKNOWN"
+    },
+    "issuetype": {
+      "name": "CustomType"
+    },
+    "priority": {
+      "name": "VeryHigh"
+    }
+  }
+}

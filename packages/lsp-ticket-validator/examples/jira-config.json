@@ -1,0 +1,124 @@
+{
+  "templates": [
+    {
+      "name": "Jira Standard Template",
+      "description": "Standard validation template for Jira tickets",
+      "system": "jira",
+      "fields": [
+        {
+          "path": "fields.summary",
+          "label": "Summary",
+          "rules": [
+            {
+              "type": "required",
+              "severity": "error",
+              "message": "Summary is required"
+            },
+            {
+              "type": "min_length",
+              "min": 20,
+              "severity": "warning",
+              "message": "Summary should be at least 20 characters for clarity"
+            },
+            {
+              "type": "max_length",
+              "max": 255,
+              "severity": "error",
+              "message": "Summary must not exceed 255 characters"
+            },
+            {
+              "type": "pattern",
+              "pattern": "^\\[(FEATURE|BUG|TASK|REFACTOR)\\]",
+              "severity": "warning",
+              "message": "Summary should start with a tag: [FEATURE], [BUG], [TASK], or [REFACTOR]"
+            }
+          ]
+        },
+        {
+          "path": "fields.description",
+          "label": "Description",
+          "rules": [
+            {
+              "type": "required",
+              "severity": "error",
+              "message": "Description is required"
+            },
+            {
+              "type": "min_length",
+              "min": 100,
+              "severity": "error",
+              "message": "Description must be at least 100 characters to provide adequate context"
+            }
+          ]
+        },
+        {
+          "path": "fields.project.key",
+          "label": "Project Key",
+          "rules": [
+            {
+              "type": "required",
+              "severity": "error",
+              "message": "Project key is required"
+            },
+            {
+              "type": "enum",
+              "values": ["BACKEND", "FRONTEND", "INFRA", "DATA"],
+              "severity": "error",
+              "message": "Project key must be one of: BACKEND, FRONTEND, INFRA, DATA"
+            }
+          ]
+        },
+        {
+          "path": "fields.issuetype.name",
+          "label": "Issue Type",
+          "rules": [
+            {
+              "type": "required",
+              "severity": "error",
+              "message": "Issue type is required"
+            },
+            {
+              "type": "enum",
+              "values": ["Task", "Bug", "Story", "Epic", "Subtask"],
+              "severity": "error",
+              "message": "Issue type must be one of: Task, Bug, Story, Epic, Subtask"
+            }
+          ]
+        },
+        {
+          "path": "fields.priority.name",
+          "label": "Priority",
+          "rules": [
+            {
+              "type": "required",
+              "severity": "warning",
+              "message": "Consider setting a priority for better triage"
+            },
+            {
+              "type": "enum",
+              "values": ["Highest", "High", "Medium", "Low", "Lowest"],
+              "severity": "warning",
+              "message": "Priority should be one of: Highest, High, Medium, Low, Lowest"
+            }
+          ]
+        },
+        {
+          "path": "fields.labels",
+          "label": "Labels",
+          "rules": [
+            {
+              "type": "min_length",
+              "min": 1,
+              "severity": "info",
+              "message": "Consider adding labels for better organization and filtering"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "defaultTemplate": "Jira Standard Template",
+  "enableCodeActions": true,
+  "enableCompletion": true,
+  "enableHover": true
+}

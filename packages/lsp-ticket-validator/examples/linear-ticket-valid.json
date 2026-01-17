@@ -1,0 +1,10 @@
+{
+  "template": "Linear Standard Template",
+  "teamId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "title": "Implement GraphQL API for user management",
+  "description": "Create a comprehensive GraphQL API that handles all user management operations including creation, updates, deletion, and querying. This API should follow our existing schema patterns and include proper error handling.",
+  "priorityLabel": "High",
+  "estimate": 5,
+  "labelIds": ["backend", "api", "graphql"],
+  "stateId": "in-progress"
+}

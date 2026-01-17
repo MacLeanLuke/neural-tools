@@ -1,0 +1,10 @@
+{
+  "template": "GitHub Issues Template",
+  "owner": "acme-corp",
+  "repo": "backend-services",
+  "title": "Add support for WebSocket connections in API Gateway",
+  "body": "We need to add WebSocket support to our API Gateway to enable real-time communication for our chat feature.\n\n## Requirements\n- Support WebSocket upgrade requests\n- Handle connection lifecycle (connect, disconnect, reconnect)\n- Implement heartbeat mechanism\n- Add proper error handling and logging\n\n## Technical Details\n- Use ws library for Node.js\n- Integrate with existing authentication middleware\n- Add metrics and monitoring\n\n## Acceptance Criteria\n- [ ] WebSocket connections can be established\n- [ ] Messages can be sent and received\n- [ ] Connections are properly cleaned up on disconnect\n- [ ] Comprehensive tests are added",
+  "labels": ["enhancement", "api", "websocket", "high-priority"],
+  "assignees": ["john-doe", "jane-smith"],
+  "state": "open"
+}

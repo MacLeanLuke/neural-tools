@@ -1,0 +1,108 @@
+{
+  "templates": [
+    {
+      "name": "Linear Standard Template",
+      "description": "Standard validation template for Linear issues",
+      "system": "linear",
+      "fields": [
+        {
+          "path": "teamId",
+          "label": "Team ID",
+          "rules": [
+            {
+              "type": "required",
+              "severity": "error",
+              "message": "Team ID is required"
+            },
+            {
+              "type": "pattern",
+              "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+              "severity": "error",
+              "message": "Team ID must be a valid UUID"
+            }
+          ]
+        },
+        {
+          "path": "title",
+          "label": "Title",
+          "rules": [
+            {
+              "type": "required",
+              "severity": "error",
+              "message": "Title is required"
+            },
+            {
+              "type": "min_length",
+              "min": 15,
+              "severity": "warning",
+              "message": "Title should be at least 15 characters for clarity"
+            },
+            {
+              "type": "max_length",
+              "max": 255,
+              "severity": "error",
+              "message": "Title must not exceed 255 characters"
+            }
+          ]
+        },
+        {
+          "path": "description",
+          "label": "Description",
+          "rules": [
+            {
+              "type": "required",
+              "severity": "error",
+              "message": "Description is required"
+            },
+            {
+              "type": "min_length",
+              "min": 50,
+              "severity": "warning",
+              "message": "Description should be at least 50 characters for proper context"
+            }
+          ]
+        },
+        {
+          "path": "priorityLabel",
+          "label": "Priority",
+          "rules": [
+            {
+              "type": "enum",
+              "values": ["No priority", "Urgent", "High", "Medium", "Low"],
+              "severity": "warning",
+              "message": "Priority should be one of: No priority, Urgent, High, Medium, Low"
+            }
+          ]
+        },
+        {
+          "path": "estimate",
+          "label": "Estimate",
+          "rules": [
+            {
+              "type": "pattern",
+              "pattern": "^[0-9]+$",
+              "severity": "info",
+              "message": "Consider adding an estimate (story points)"
+            }
+          ]
+        },
+        {
+          "path": "labelIds",
+          "label": "Labels",
+          "rules": [
+            {
+              "type": "min_length",
+              "min": 1,
+              "severity": "info",
+              "message": "Consider adding labels for better categorization"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "defaultTemplate": "Linear Standard Template",
+  "enableCodeActions": true,
+  "enableCompletion": true,
+  "enableHover": true
+}
