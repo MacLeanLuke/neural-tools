@@ -99,7 +99,7 @@ pre, code, .code-example {
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    z-index: 101;
+    z-index: 121;
 }
 
 .mobile-menu-toggle span {
@@ -587,6 +587,10 @@ section {
     /* Mobile Navigation */
     .mobile-menu-toggle {
         display: flex;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 121;
     }
 
     .nav-menu {
@@ -602,7 +606,7 @@ section {
         box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
         transition: right 0.3s ease;
         overflow-y: auto;
-        z-index: 102;
+        z-index: 120;
     }
 
     .nav-menu.active {
