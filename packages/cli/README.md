@@ -1,11 +1,11 @@
 # @neural-tools/cli
 
-> CLI for Neural Tools - Generate MCPs, Claude commands, and AI workflows
+> CLI for Neural Tools - Generate MCPs, Claude commands, skills, plugins, and AI workflows
 
 [![npm version](https://img.shields.io/npm/v/@neural-tools/cli)](https://www.npmjs.com/package/@neural-tools/cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE.md)
 
-The main CLI tool for Neural Tools, providing commands to generate MCP servers, Claude commands, agents, and deploy AI-powered applications.
+The main CLI tool for Neural Tools, providing commands to generate MCP servers, Claude commands, skills, agents, plugins, and deploy AI-powered applications.
 
 ## Installation
 
@@ -123,6 +123,59 @@ neural-tools generate agent code-reviewer \
 
 ---
 
+### `generate skill`
+
+Generate a Claude Code skill (`SKILL.md`) for local/global use or inside a plugin.
+
+```bash
+neural-tools generate skill <name> [options]
+
+Options:
+  -d, --description <desc>    Description of the skill
+  -o, --output <dir>          Output directory (default: ./claude/skills)
+  --plugin <dir>              Create skill in <dir>/skills/<name>
+  --references                Create references/ scaffold
+  --global                    Install globally to ~/.claude/skills
+  --dry-run                   Preview without creating files
+```
+
+**Example:**
+
+```bash
+neural-tools generate skill api-review \
+  --description "Review API design and docs for consistency" \
+  --references
+```
+
+---
+
+### `generate plugin`
+
+Generate a Claude Code plugin scaffold with `.claude-plugin/plugin.json`.
+
+```bash
+neural-tools generate plugin <name> [options]
+
+Options:
+  -d, --description <desc>    Description of the plugin
+  -o, --output <dir>          Output directory (default: ./claude/plugins)
+  --version <version>         Plugin version (default: 0.1.0)
+  --author <author>           Plugin author
+  --with-skill <name>         Create a starter skill in the plugin
+  --dry-run                   Preview without creating files
+```
+
+**Example:**
+
+```bash
+neural-tools generate plugin engineering-workflows \
+  --description "Internal engineering workflows for Claude Code" \
+  --author "ACME Inc." \
+  --with-skill bug-triage
+```
+
+---
+
 ### `deploy`
 
 Deploy an MCP server to AWS or GCP.
@@ -189,8 +242,15 @@ my-project/
 ├── claude/
 │   ├── commands/           # Slash commands
 │   │   └── search-docs.md
+│   ├── skills/             # Standalone Claude skills
+│   │   └── api-review/SKILL.md
 │   └── agents/             # Specialized agents
 │       └── code-reviewer.md
+│   └── plugins/            # Claude plugins
+│       └── engineering-workflows/
+│           ├── .claude-plugin/plugin.json
+│           └── skills/
+│               └── bug-triage/SKILL.md
 └── package.json
 ```
 

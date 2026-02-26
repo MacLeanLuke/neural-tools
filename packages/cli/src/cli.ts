@@ -5,6 +5,8 @@ import { logger } from '@neural-tools/core';
 import { generateMCP } from './commands/generate-mcp';
 import { generateCommand } from './commands/generate-command';
 import { generateAgent } from './commands/generate-agent';
+import { generateSkill } from './commands/generate-skill';
+import { generatePlugin } from './commands/generate-plugin';
 import { deployMCP } from './commands/deploy';
 import { loginCommand } from './commands/login';
 import { statusCommand } from './commands/status';
@@ -13,14 +15,14 @@ const program = new Command();
 
 program
   .name('neural-tools')
-  .description('Neural Tools - Build MCPs, Claude commands, and AI workflows')
+  .description('Neural Tools - Build MCPs, Claude commands, skills, plugins, and AI workflows')
   .version('0.1.0');
 
 // Generate commands
 const generate = program
   .command('generate')
   .alias('g')
-  .description('Generate new components (MCP, command, agent, etc.)');
+  .description('Generate new components (MCP, command, agent, skill, plugin, etc.)');
 
 generate
   .command('mcp')
@@ -57,6 +59,30 @@ generate
   .option('--global', 'Install globally to ~/.claude/agents', false)
   .option('--dry-run', 'Preview without creating files', false)
   .action(generateAgent);
+
+generate
+  .command('skill')
+  .description('Generate a new Claude skill')
+  .argument('<name>', 'Name of the skill')
+  .option('-d, --description <desc>', 'Description of the skill')
+  .option('-o, --output <dir>', 'Output directory', './claude/skills')
+  .option('--plugin <dir>', 'Write skill into a plugin directory (creates <dir>/skills/<name>)')
+  .option('--references', 'Create a references folder scaffold', false)
+  .option('--global', 'Install globally to ~/.claude/skills', false)
+  .option('--dry-run', 'Preview without creating files', false)
+  .action(generateSkill);
+
+generate
+  .command('plugin')
+  .description('Generate a new Claude plugin')
+  .argument('<name>', 'Name of the plugin')
+  .option('-d, --description <desc>', 'Description of the plugin')
+  .option('-o, --output <dir>', 'Output directory', './claude/plugins')
+  .option('--version <version>', 'Plugin version', '0.1.0')
+  .option('--author <author>', 'Plugin author')
+  .option('--with-skill <name>', 'Create a starter skill inside the plugin')
+  .option('--dry-run', 'Preview without creating files', false)
+  .action(generatePlugin);
 
 // Deploy command
 program
