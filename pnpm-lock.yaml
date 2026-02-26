@@ -123,6 +123,34 @@ importers:
         specifier: ^5.3.3
         version: 5.9.3
 
+  packages/create-json-plugin:
+    dependencies:
+      '@neural-tools/core':
+        specifier: workspace:*
+        version: link:../core
+      commander:
+        specifier: ^12.0.0
+        version: 12.1.0
+      fs-extra:
+        specifier: ^11.2.0
+        version: 11.3.3
+      inquirer:
+        specifier: ^9.2.12
+        version: 9.3.8(@types/node@20.19.28)
+    devDependencies:
+      '@types/fs-extra':
+        specifier: ^11.0.4
+        version: 11.0.4
+      '@types/inquirer':
+        specifier: ^9.0.7
+        version: 9.0.9
+      '@types/node':
+        specifier: ^20.11.5
+        version: 20.19.28
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+
   packages/fine-tune:
     dependencies:
       '@neural-tools/core':

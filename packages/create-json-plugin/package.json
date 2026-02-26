@@ -1,0 +1,52 @@
+{
+  "name": "@neural-tools/create-json-plugin",
+  "version": "0.1.0",
+  "description": "Scaffold Claude plugins with JSON-output skills and custom JSON LSP validation",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "create-neural-json-plugin": "./dist/index.js"
+  },
+  "license": "SEE LICENSE IN ../../LICENSE.md",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MacLeanLuke/neural-tools.git",
+    "directory": "packages/create-json-plugin"
+  },
+  "homepage": "https://github.com/MacLeanLuke/neural-tools#readme",
+  "bugs": {
+    "url": "https://github.com/MacLeanLuke/neural-tools/issues"
+  },
+  "keywords": [
+    "neural-tools",
+    "claude",
+    "plugin",
+    "json",
+    "lsp",
+    "generator"
+  ],
+  "scripts": {
+    "build": "tsup && chmod +x dist/index.js",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "test": "echo 'Tests coming soon'"
+  },
+  "dependencies": {
+    "@neural-tools/core": "workspace:*",
+    "commander": "^12.0.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.12"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.11.5",
+    "typescript": "^5.3.3"
+  },
+  "files": [
+    "dist"
+  ]
+}
