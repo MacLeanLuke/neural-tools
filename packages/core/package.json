@@ -1,6 +1,6 @@
 {
   "name": "@neural-tools/core",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Core utilities and types for Neural Tools",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

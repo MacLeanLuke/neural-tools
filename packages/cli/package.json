@@ -1,6 +1,6 @@
 {
   "name": "@neural-tools/cli",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "CLI for Neural Tools - Generate MCPs, Claude commands, and AI workflows",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

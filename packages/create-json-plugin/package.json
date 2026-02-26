@@ -1,6 +1,6 @@
 {
   "name": "@neural-tools/create-json-plugin",
-  "version": "0.1.0",
+  "version": "0.1.7",
   "description": "Scaffold Claude plugins with JSON-output skills and custom JSON LSP validation",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
