@@ -34,6 +34,7 @@ export async function generatePlugin(name: string, options: GeneratePluginOption
     ]);
     description = answers.description;
   }
+  const finalDescription = description || `${name} Claude Code plugin`;
 
   const pluginDir = path.resolve(options.output || './claude/plugins', name);
   const pluginConfigDir = path.join(pluginDir, '.claude-plugin');
@@ -44,7 +45,7 @@ export async function generatePlugin(name: string, options: GeneratePluginOption
     logger.info('Dry run mode - no files will be created');
     logger.section('Configuration', [
       `Name: ${name}`,
-      `Description: ${description}`,
+      `Description: ${finalDescription}`,
       `Output: ${pluginDir}`,
       `Plugin config: ${pluginConfigFile}`,
       `Version: ${options.version || '0.1.0'}`,
@@ -79,7 +80,7 @@ export async function generatePlugin(name: string, options: GeneratePluginOption
     const manifest: PluginManifest = {
       name,
       version: options.version || '0.1.0',
-      description
+      description: finalDescription
     };
 
     if (options.author) {
