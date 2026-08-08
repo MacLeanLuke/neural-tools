@@ -42,23 +42,34 @@ pre, code, .code-example {
 
 /* Header */
 .header {
-    background: var(--white);
     border-bottom: 1px solid var(--light-gray);
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(10px);
+}
+
+/*
+ * The frosted background lives on a pseudo-element, not on .header itself:
+ * backdrop-filter would make .header the containing block for its
+ * position: fixed children, trapping the mobile drawer inside the header box.
+ */
+.header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background: rgba(255, 255, 255, 0.9);
-    overflow-x: hidden;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    z-index: -1;
 }
 
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
     padding: 1rem 0;
     width: 100%;
-    overflow: hidden;
 }
 
 .logo h1 {
@@ -88,6 +99,25 @@ pre, code, .code-example {
 
 .nav-menu a:hover {
     color: var(--primary);
+}
+
+/* Buttons in the nav keep their own colors (.nav-menu a would otherwise win) */
+.nav-menu a.btn-primary,
+.nav-menu a.btn-primary:hover {
+    color: var(--white);
+}
+
+.nav-menu a.btn-secondary {
+    color: var(--primary);
+}
+
+.nav-menu a.btn-secondary:hover {
+    color: var(--white);
+}
+
+/* Hidden until the mobile breakpoint turns it into the drawer backdrop */
+.mobile-menu-overlay {
+    display: none;
 }
 
 /* Mobile Menu Toggle */
