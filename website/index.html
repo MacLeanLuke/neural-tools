@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
     <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="nav">
                 <div class="logo">
-                    <h1>Neural Tools</h1>
+                    <span class="logo-text">Neural Tools</span>
                 </div>
 
                 <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="nav-menu">
@@ -37,6 +39,7 @@
         <div class="mobile-menu-overlay"></div>
     </header>
 
+    <main id="main">
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -67,32 +70,32 @@ neural-tools generate command search-kb</code></pre>
             <h2 class="section-title">Everything you need to build AI tools</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
+                    <div class="feature-icon" aria-hidden="true">🚀</div>
                     <h3>MCP Server Generator</h3>
                     <p>Create Python FastMCP servers with Docker support in seconds. Includes example tools, resources, and prompts.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
+                    <div class="feature-icon" aria-hidden="true">⚡</div>
                     <h3>Claude Commands</h3>
                     <p>Generate custom slash commands for Claude Code. Specify allowed tools and arguments.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
+                    <div class="feature-icon" aria-hidden="true">🤖</div>
                     <h3>Claude Agents</h3>
                     <p>Create specialized AI agents with custom instructions and tool permissions.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🐳</div>
+                    <div class="feature-icon" aria-hidden="true">🐳</div>
                     <h3>Docker Ready</h3>
                     <p>Complete Docker setup included. Dockerfile, docker-compose, and .dockerignore configured.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
+                    <div class="feature-icon" aria-hidden="true">🔄</div>
                     <h3>CI/CD Integration</h3>
                     <p>GitHub Actions workflows with AWS and GCP deployment templates built-in.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
+                    <div class="feature-icon" aria-hidden="true">🧠</div>
                     <h3>Vector Database</h3>
                     <p>Semantic search with Pinecone, Qdrant, ChromaDB, or local storage.</p>
                 </div>
@@ -177,24 +180,25 @@ docker-compose up</code></pre>
             <h2 class="section-title">Documentation & Resources</h2>
             <div class="docs-grid">
                 <a href="https://github.com/MacLeanLuke/neural-tools#packages" target="_blank" class="doc-card">
-                    <h3>📚 Package Documentation</h3>
+                    <h3><span aria-hidden="true">📚</span> Package Documentation</h3>
                     <p>Complete guides and API references for all packages</p>
                 </a>
                 <a href="https://github.com/MacLeanLuke/neural-tools/tree/main/packages/cli#readme" target="_blank" class="doc-card">
-                    <h3>⚡ CLI Reference</h3>
+                    <h3><span aria-hidden="true">⚡</span> CLI Reference</h3>
                     <p>Learn all CLI commands and options</p>
                 </a>
                 <a href="https://github.com/MacLeanLuke/neural-tools" target="_blank" class="doc-card">
-                    <h3>💻 GitHub Repository</h3>
+                    <h3><span aria-hidden="true">💻</span> GitHub Repository</h3>
                     <p>View source code, report issues, contribute</p>
                 </a>
                 <a href="https://modelcontextprotocol.io" target="_blank" class="doc-card">
-                    <h3>🔗 MCP Protocol</h3>
+                    <h3><span aria-hidden="true">🔗</span> MCP Protocol</h3>
                     <p>Learn about the Model Context Protocol</p>
                 </a>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
