@@ -10,6 +10,7 @@ import { generatePlugin } from './commands/generate-plugin';
 import { deployMCP } from './commands/deploy';
 import { loginCommand } from './commands/login';
 import { statusCommand } from './commands/status';
+import { evalSkill } from './commands/eval-skill';
 
 const program = new Command();
 
@@ -17,6 +18,19 @@ program
   .name('neural-tools')
   .description('Neural Tools - Build MCPs, Claude commands, skills, plugins, and AI workflows')
   .version('0.1.0');
+
+// Eval commands — verify generated artifacts actually work
+const evaluate = program
+  .command('eval')
+  .description('Evaluate skills and other generated artifacts');
+
+evaluate
+  .command('skill')
+  .description('Check a skill (or a directory of skills) against the selection contract')
+  .argument('<path>', 'Path to a skill directory, or a directory containing skills')
+  .option('--strict', 'Treat warnings as failures', false)
+  .option('--json', 'Machine-readable output', false)
+  .action(evalSkill);
 
 // Generate commands
 const generate = program
@@ -68,6 +82,7 @@ generate
   .option('-o, --output <dir>', 'Output directory', './claude/skills')
   .option('--plugin <dir>', 'Write skill into a plugin directory (creates <dir>/skills/<name>)')
   .option('--references', 'Create a references folder scaffold', false)
+  .option('--no-evals', 'Skip the evals/triggers.json scaffold')
   .option('--global', 'Install globally to ~/.claude/skills', false)
   .option('--dry-run', 'Preview without creating files', false)
   .action(generateSkill);

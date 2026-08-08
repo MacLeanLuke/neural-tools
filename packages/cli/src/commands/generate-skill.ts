@@ -9,6 +9,7 @@ interface GenerateSkillOptions {
   output?: string;
   plugin?: string;
   references?: boolean;
+  noEvals?: boolean;
   global?: boolean;
   dryRun?: boolean;
 }
@@ -33,6 +34,7 @@ export async function generateSkill(name: string, options: GenerateSkillOptions)
   const skillDir = path.join(baseDir, name);
   const skillFile = path.join(skillDir, 'SKILL.md');
   const referencesDir = path.join(skillDir, 'references');
+  const evalsDir = path.join(skillDir, 'evals');
 
   if (options.dryRun) {
     logger.info('Dry run mode - no files will be created');
@@ -42,6 +44,7 @@ export async function generateSkill(name: string, options: GenerateSkillOptions)
       `Output: ${skillFile}`,
       `Plugin: ${options.plugin || 'none'}`,
       `References: ${options.references ? 'Yes' : 'No'}`,
+      `Evals: ${options.noEvals ? 'No' : 'Yes'}`,
       `Global: ${options.global ? 'Yes' : 'No'}`
     ]);
     return;
@@ -101,9 +104,35 @@ Store focused reference material for the ${name} skill in this folder.
       await fs.writeFile(path.join(referencesDir, 'README.md'), referencesReadme, 'utf-8');
     }
 
+    // Scaffolded by default. A skill is chosen by its description, so the
+    // description is the highest-risk part of it — and the part that goes
+    // untested unless the labeled prompts exist from the start.
+    if (!options.noEvals) {
+      await fs.ensureDir(evalsDir);
+      const triggers = {
+        should_trigger: [
+          `Replace with a request that must select "${name}".`,
+          `Add another phrasing a real user would type.`
+        ],
+        should_not_trigger: [
+          `Replace with a nearby request that must NOT select "${name}".`,
+          `Add a request another skill should win instead.`
+        ]
+      };
+      await fs.writeFile(
+        path.join(evalsDir, 'triggers.json'),
+        `${JSON.stringify(triggers, null, 2)}\n`,
+        'utf-8'
+      );
+    }
+
     logger.succeedSpinner('Claude skill created successfully!');
     logger.section('Next steps', [
       `Edit the skill definition: ${skillFile}`,
+      options.noEvals
+        ? 'Add evals/triggers.json so selection can be measured'
+        : `Replace the placeholder prompts in: ${path.join(evalsDir, 'triggers.json')}`,
+      `Check it: neural-tools eval skill ${skillDir}`,
       options.references ? `Add reference docs in: ${referencesDir}` : 'Use --references to scaffold a references folder'
     ]);
     logger.success(`✨ Skill "${name}" ready to use!`);

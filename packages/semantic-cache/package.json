@@ -30,7 +30,8 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "clean": "rm -rf dist",
-    "test": "echo 'Tests coming soon'"
+    "test": "echo 'Tests coming soon'",
+    "bench": "tsx bench/run.ts"
   },
   "dependencies": {
     "@neural-tools/core": "workspace:*",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
+    "tsx": "^4.23.11",
     "typescript": "^5.3.3"
   },
   "files": [
