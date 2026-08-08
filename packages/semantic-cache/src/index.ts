@@ -24,6 +24,32 @@ export interface SemanticCacheConfig {
    * Vector database configuration
    */
   vectorDBConfig?: any;
+
+  /**
+   * Function that turns a prompt into an embedding vector.
+   *
+   * REQUIRED for actual semantic matching. Without it the cache falls back to
+   * a hash-based placeholder that carries no semantic signal — measured
+   * similarity between a paraphrase pair and between two unrelated strings is
+   * the same (~-0.02), so at any usable threshold the cache degrades to exact
+   * string matching. See bench/README.md.
+   *
+   * Pass a real embedding model:
+   *
+   *   import { openai } from '@ai-sdk/openai';
+   *   import { embed } from 'ai';
+   *
+   *   createSemanticCache({
+   *     embedder: async (text) => {
+   *       const { embedding } = await embed({
+   *         model: openai.embedding('text-embedding-3-small'),
+   *         value: text,
+   *       });
+   *       return embedding;
+   *     },
+   *   });
+   */
+  embedder?: (text: string) => Promise<number[]> | number[];
 }
 
 export interface CacheEntry {
@@ -44,9 +70,33 @@ export class SemanticCache {
       similarityThreshold: config.similarityThreshold || 0.95,
       ttl: config.ttl || 3600,
       provider: config.provider || 'local',
-      vectorDBConfig: config.vectorDBConfig || {}
+      vectorDBConfig: config.vectorDBConfig || {},
+      embedder: config.embedder || null as any
     };
   }
+
+  /**
+   * Embeds a prompt. Warns once if no embedder was supplied, because the
+   * fallback cannot do the thing this package is named after.
+   */
+  private async embed(text: string): Promise<number[]> {
+    if (this.config.embedder) {
+      return this.config.embedder(text);
+    }
+
+    if (!SemanticCache.warnedAboutFallback) {
+      SemanticCache.warnedAboutFallback = true;
+      console.warn(
+        '[semantic-cache] No `embedder` configured. Falling back to a hash-based ' +
+        'placeholder with no semantic signal — this cache will only match ' +
+        'byte-identical prompts. Pass `embedder` to enable real semantic matching.'
+      );
+    }
+
+    return createEmbedding(text);
+  }
+
+  private static warnedAboutFallback = false;
 
   /**
    * Initialize the semantic cache
@@ -81,7 +131,7 @@ export class SemanticCache {
     }
 
     // Create embedding for the prompt
-    const embedding = await createEmbedding(prompt);
+    const embedding = await this.embed(prompt);
 
     // Query for similar prompts
     const results = await this.vectorStore.query(embedding, {
@@ -131,7 +181,7 @@ export class SemanticCache {
     }
 
     // Create embedding for the prompt
-    const embedding = await createEmbedding(prompt);
+    const embedding = await this.embed(prompt);
 
     // Create cache entry
     const entry: CacheEntry = {

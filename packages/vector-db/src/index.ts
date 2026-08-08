@@ -31,8 +31,22 @@ export async function createVectorStore(config: VectorDBConfig): Promise<VectorS
 }
 
 /**
- * Helper function to create embeddings from text
- * In production, this would call OpenAI, Anthropic, or other embedding APIs
+ * Hash-based stand-in for an embedding. NOT a semantic embedding.
+ *
+ * It maps a string hash across 384 dimensions, so the output is deterministic
+ * per exact input and carries no meaning. Measured cosine similarity:
+ *
+ *   identical strings          1.00
+ *   one character different    0.55
+ *   paraphrase of each other  -0.02
+ *   completely unrelated      -0.02
+ *
+ * Because paraphrases and unrelated text are indistinguishable, any threshold
+ * high enough to avoid false hits also rejects every paraphrase — the cache
+ * degrades to exact string matching. Supply a real embedding model instead;
+ * see SemanticCacheConfig.embedder.
+ *
+ * @deprecated Kept for tests and offline development only.
  */
 export async function createEmbedding(text: string): Promise<number[]> {
   // Placeholder: Simple hash-based embedding for testing

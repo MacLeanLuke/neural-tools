@@ -1,0 +1,26 @@
+{
+  "paraphrases": [
+    ["How do I reset my password?", "I forgot my password, how can I change it?"],
+    ["What is the capital of France?", "Which city is the capital of France?"],
+    ["Summarize this document", "Give me a summary of this doc"],
+    ["Write a unit test for this function", "Add test coverage for this function"],
+    ["What's the weather in Dallas tomorrow?", "Tomorrow's forecast for Dallas please"],
+    ["Explain how OAuth works", "Can you walk me through the OAuth flow?"],
+    ["Convert this JSON to CSV", "Turn this JSON into a CSV file"],
+    ["Why is my build failing?", "My build broke, what went wrong?"],
+    ["List all users in the database", "Show me every user record"],
+    ["Cancel my subscription", "I want to end my membership"]
+  ],
+  "distractors": [
+    ["How do I reset my password?", "What is the airspeed velocity of a swallow?"],
+    ["What is the capital of France?", "Deploy the staging environment"],
+    ["Summarize this document", "Increase the connection pool size"],
+    ["Write a unit test for this function", "Book a flight to Denver"],
+    ["What's the weather in Dallas tomorrow?", "Refactor this class to use dependency injection"],
+    ["Explain how OAuth works", "What is the mitochondria's function?"],
+    ["Convert this JSON to CSV", "Schedule a meeting for Thursday"],
+    ["Why is my build failing?", "Recommend a good pasta recipe"],
+    ["List all users in the database", "Translate this into Portuguese"],
+    ["Cancel my subscription", "What time does the library close?"]
+  ]
+}
