@@ -47,8 +47,9 @@ npm install --save-dev @neural-tools/cli   # per project
 | `generate mcp <name>` | A FastMCP server with transport, auth, and config wired up |
 | `generate command <name>` | A Claude Code slash command |
 | `generate agent <name>` | A specialized agent definition |
-| `generate skill <name>` | A reusable skill package |
+| `generate skill <name>` | A reusable skill package, with eval fixtures |
 | `generate plugin <name>` | A JSON-configured plugin |
+| `eval skill <path>` | Checks a skill against the selection contract |
 | `deploy <name>` | Deployment to AWS or GCP |
 | `login` / `status` | Auth and workspace state |
 
@@ -62,6 +63,43 @@ neural-tools generate mcp github \
   --deployment aws \
   --dry-run
 ```
+
+## Skills get evals by default
+
+A skill is chosen by its **description** — the model reads descriptions and
+decides which to load. That makes the description the highest-risk part of a
+skill, and it is the part nobody tests. A skill that never fires is invisible;
+one that fires on the wrong request hijacks unrelated work.
+
+So `generate skill` scaffolds `evals/triggers.json` alongside `SKILL.md`, and
+there is a checker:
+
+```bash
+neural-tools eval skill ./claude/skills/invoice-parser
+neural-tools eval skill ./claude/skills --strict   # every skill; warnings fail
+```
+
+It runs entirely offline — no model, no network, no API key — and checks the
+contract that decides whether a skill can ever be selected:
+
+| Rule | Severity |
+| --- | --- |
+| Frontmatter present and parseable | error |
+| `name` present and matching its directory | error |
+| `description` present | error |
+| `description` long enough to disambiguate | error |
+| `triggers.json` well-formed | error |
+| `description` states *when* to use the skill | warning |
+| Body is no longer the generated template | warning |
+| Labeled trigger prompts exist | warning |
+| Name is kebab-case | warning |
+
+Selection itself is model-driven, so the model stays inside the system under
+test and never inside the scorer — `scoreTriggers()` grades outcomes with plain
+precision/recall. Precision is weighted more heavily in practice: a skill firing
+when it shouldn't does more damage than one that occasionally misses.
+
+Opt out with `--no-evals` if you must.
 
 ## Packages
 
