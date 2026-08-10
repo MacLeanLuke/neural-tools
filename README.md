@@ -101,6 +101,44 @@ when it shouldn't does more damage than one that occasionally misses.
 
 Opt out with `--no-evals` if you must.
 
+## The semantic cache does not work without a real embedder
+
+`@neural-tools/semantic-cache` ships with a placeholder embedding function — a
+string hash mapped across 384 dimensions. Benchmarking it produced the most
+useful result in this repo:
+
+| | |
+| --- | --- |
+| Paraphrase similarity | mean `-0.0118` |
+| Unrelated similarity | mean `-0.0028` |
+| **Separation** | **`-0.0090`** |
+
+The separation is *negative*. Paraphrases score lower than genuinely unrelated
+prompts, so the signal is not weak — it is absent. Hit rate is 0% at every
+threshold from 0.99 down to 0.50, which means that at the default threshold of
+0.95 the cache only ever matched byte-identical strings. A package named
+"semantic cache" was in practice an exact-match cache.
+
+The embedder is now injectable, the fallback warns loudly, and
+[`packages/semantic-cache/bench/`](packages/semantic-cache/bench/) ships the
+benchmark that proves the difference. It reports hit rate and false-hit rate
+separately, because a miss costs one model call while a false hit serves a wrong
+answer.
+
+Pass a real embedding model before relying on it:
+
+```ts
+createSemanticCache({
+  embedder: async (text) => {
+    const { embedding } = await embed({
+      model: openai.embedding('text-embedding-3-small'),
+      value: text,
+    })
+    return embedding
+  },
+})
+```
+
 ## Packages
 
 A monorepo publishing four packages, all versioned together:
